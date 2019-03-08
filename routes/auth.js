@@ -63,7 +63,7 @@ router.post('/login', requireAnon, requireFields, async (req, res, next) => {
       // guardar la session
       req.session.currentUser = user;
       // redirigir
-      res.redirect('/');
+      res.redirect('/splash');
     } else {
       res.redirect('/auth/login');
     }

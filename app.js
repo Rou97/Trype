@@ -11,6 +11,7 @@ const flash = require('connect-flash');
 
 const indexRouter = require('./routes/index');
 const authRouter = require('./routes/auth');
+const splashRouter = require('./routes/splash');
 
 const app = express();
 
@@ -52,6 +53,7 @@ app.use((req, res, next) => {
 
 app.use('/', indexRouter);
 app.use('/auth', authRouter);
+app.use('/splash', splashRouter);
 
 app.use((req, res, next) => {
   res.status(404);
