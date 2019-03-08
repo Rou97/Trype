@@ -3,6 +3,8 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+const ObjectId = Schema.Types.ObjectId;
+
 const userSchema = new Schema({
   password: {
     type: String,
@@ -11,6 +13,26 @@ const userSchema = new Schema({
   username: {
     type: String,
     required: true
+  },
+  email: {
+    type: String,
+    required: true
+  },
+  books: [{
+    item: {
+      type: ObjectId,
+      ref: 'Book'
+    },
+    status: {
+      type: String,
+      enum: ['wants', 'haves']
+    }
+  }],
+  Location: {
+    type: String
+  },
+  Image: {
+    type: String
   }
 });
 

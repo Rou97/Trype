@@ -16,11 +16,12 @@ router.get('/signup', requireAnon, (req, res, next) => {
 
 router.post('/signup', requireAnon, requireFields, async (req, res, next) => {
   // Extraer body
-  const { username, password } = req.body;
+  const { username, password, email } = req.body;
   // Comprar que el usuario no existe en la base de datos
   try {
-    const result = await User.findOne({ username });
-    if (result) {
+    const resultUsername = await User.findOne({ username });
+    const resultEmail = await User.findOne({ email });
+    if (resultUsername && resultEmail) {
       res.redirect('/auth/signup');
       return;
     }
@@ -30,7 +31,8 @@ router.post('/signup', requireAnon, requireFields, async (req, res, next) => {
     // Crear el usuario
     const newUser = {
       username,
-      password: hashedPassword
+      password: hashedPassword,
+      email
     };
     const createdUser = await User.create(newUser);
     // Guardamos el usuario en la session

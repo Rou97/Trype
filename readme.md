@@ -118,7 +118,8 @@ User model
 ```
 username: String
 password: String
-Book-list: [{
+email: String
+books: [{
   item: ObjectID Books,
   status: enum wants/haves
 }]
@@ -131,7 +132,7 @@ ISBN: String
 Title: String
 Author: Array
 Image: String
-status: Boolean
+status: Boolean //modificado
 ``` 
 Match
 ```
