@@ -47,10 +47,20 @@ router.post('/books/add-book/search', (req, res, next) => {
   });
 });
 
-router.post('/books/add-book/new', (req, res, next) => {
+router.post('/books/add-book/new', async (req, res, next) => {
   const { title, authors, ISBN, image } = req.body;
-  console.log(title);
-  res.render('main/add-book');
+  const newBook = {
+    title,
+    authors,
+    ISBN,
+    image
+  };
+  try {
+    await Book.create(newBook);
+    res.render('main/add-book');
+  } catch (error) {
+    next(error);
+  }
 });
 
 router.get('/matches', (req, res, next) => {
