@@ -14,12 +14,15 @@
 {{#each results}}
     <img src="{{this.thumbnail}}" alt="">
     <p>{{this.title}}</p>
+    <p>{{this.industryIdentifiers.1.identifier}}</p>
+    <p>{{this.authors}}</p>
     
     <form method="POST" action="/splash/books/add-book/search">
         
         <input type="text" name="title" value="{{this.title}}"/>
         <input type="text" name="image" value="{{this.thumbnail}}"/>
-         <input type="text" name="ISBN" value="{{this.industryIdentifiers.1.identifier}}"/>
+        <input type="text" name="ISBN" value="{{this.industryIdentifiers.1.identifier}}"/>
+        <input type="text" name="authors" value="{{this.authors}}"/>
         
     
         <div>

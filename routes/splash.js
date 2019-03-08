@@ -39,8 +39,7 @@ router.post('/books/add-book/search', (req, res, next) => {
   const { title } = req.body;
   api.search(title, function (error, results) {
     if (!error) {
-      // console.log(results[1].industryIdentifiers[1].identifier);
-      console.log();
+      console.log(results[0].authors);
       res.render('main/add-book', { results });
     } else {
     }
