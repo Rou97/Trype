@@ -16,7 +16,7 @@ router.get('/signup', requireAnon, (req, res, next) => {
 
 router.post('/signup', requireAnon, requireFields, async (req, res, next) => {
   // Extraer body
-  const { username, password, email } = req.body;
+  const { username, password, email, location } = req.body;
   // Comprar que el usuario no existe en la base de datos
   try {
     const resultUsername = await User.findOne({ username });
@@ -32,7 +32,8 @@ router.post('/signup', requireAnon, requireFields, async (req, res, next) => {
     const newUser = {
       username,
       password: hashedPassword,
-      email
+      email,
+      location
     };
     const createdUser = await User.create(newUser);
     // Guardamos el usuario en la session

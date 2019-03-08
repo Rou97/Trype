@@ -28,7 +28,7 @@ const userSchema = new Schema({
       enum: ['wants', 'haves']
     }
   }],
-  Location: {
+  location: {
     type: String
   },
   Image: {
