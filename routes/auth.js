@@ -39,7 +39,7 @@ router.post('/signup', requireAnon, requireFields, async (req, res, next) => {
     // Guardamos el usuario en la session
     req.session.currentUser = createdUser;
     // Redirigimos para la homepage
-    res.redirect('/');
+    res.redirect('/splash');
   } catch (error) {
     next(error);
   }
