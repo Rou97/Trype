@@ -1,6 +1,7 @@
 // Raúl Miguel acuerdate de poner los putos flash
 const express = require('express');
 const User = require('../models/User');
+const Book = require('../models/Book');
 const api = require('google-books-search');
 
 const { requireUser } = require('../middlewares/auth');
@@ -44,6 +45,12 @@ router.post('/books/add-book/search', (req, res, next) => {
     } else {
     }
   });
+});
+
+router.post('/books/add-book/new', (req, res, next) => {
+  const { title, authors, ISBN, image } = req.body;
+  console.log(title);
+  res.render('main/add-book');
 });
 
 router.get('/matches', (req, res, next) => {

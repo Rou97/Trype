@@ -10,14 +10,14 @@
   <div class="field submit">
     <button type="submit">Search</button>
   </div>
-
+</form>
 {{#each results}}
     <img src="{{this.thumbnail}}" alt="">
     <p>{{this.title}}</p>
     <p>{{this.industryIdentifiers.1.identifier}}</p>
     <p>{{this.authors}}</p>
     
-    <form method="POST" action="/splash/books/add-book/search">
+    <form method="POST" action="/splash/books/add-book/new">
         
         <input type="text" name="title" value="{{this.title}}"/>
         <input type="text" name="image" value="{{this.thumbnail}}"/>
@@ -26,11 +26,11 @@
         
     
         <div>
-            <button type="submit">Signup</button>
+            <button type="submit">Add</button>
         </div>
     </form>
 
 
 {{/each}}
 
-</form>
+
