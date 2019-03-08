@@ -22,7 +22,7 @@ router.get('/profile', requireUser, async (req, res, next) => {
   }
 });
 
-router.get('/books', async (req, res, next) => {
+router.get('/books', requireUser, async (req, res, next) => {
   const { _id } = req.session.currentUser;
   try {
     const user = await User.findById(_id);
@@ -32,11 +32,11 @@ router.get('/books', async (req, res, next) => {
   }
 });
 
-router.get('/books/add-book', (req, res, next) => {
+router.get('/books/add-book', requireUser, (req, res, next) => {
   res.render('main/add-book');
 });
 
-router.post('/books/add-book/search', (req, res, next) => {
+router.post('/books/add-book/search', requireUser, (req, res, next) => {
   const { title } = req.body;
   api.search(title, function (error, results) {
     if (!error) {
@@ -47,7 +47,7 @@ router.post('/books/add-book/search', (req, res, next) => {
   });
 });
 
-router.post('/books/add-book/new', async (req, res, next) => {
+router.post('/books/add-book/new', requireUser, async (req, res, next) => {
   const { title, authors, ISBN, image } = req.body;
   const newBook = {
     ISBN,
@@ -56,18 +56,19 @@ router.post('/books/add-book/new', async (req, res, next) => {
     image
   };
   try {
-    console.log(ISBN);
-    console.log(title);
-    console.log(authors);
-    console.log(image);
-    await Book.create(newBook);
+    // console.log(req.session.currentUser.username);
+    if (await Book.findOne({ ISBN: true })) {
+      console.log('ya esta creado');
+    } else {
+      await Book.create(newBook);
+    }
     res.render('main/add-book');
   } catch (error) {
     next(error);
   }
 });
 
-router.get('/matches', (req, res, next) => {
+router.get('/matches', requireUser, (req, res, next) => {
   res.render('main/matches');
 });
 
