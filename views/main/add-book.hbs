@@ -11,8 +11,23 @@
     <button type="submit">Search</button>
   </div>
 
-{{#each name}}
+{{#each results}}
+    <img src="{{this.thumbnail}}" alt="">
     <p>{{this.title}}</p>
+    
+    <form method="POST" action="/splash/books/add-book/search">
+        
+        <input type="text" name="title" value="{{this.title}}"/>
+        <input type="text" name="image" value="{{this.thumbnail}}"/>
+         <input type="text" name="ISBN" value="{{this.industryIdentifiers.1.identifier}}"/>
+        
+    
+        <div>
+            <button type="submit">Signup</button>
+        </div>
+    </form>
+
+
 {{/each}}
 
 </form>

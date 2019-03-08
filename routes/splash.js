@@ -37,17 +37,14 @@ router.get('/books/add-book', (req, res, next) => {
 
 router.post('/books/add-book/search', (req, res, next) => {
   const { title } = req.body;
-  let name = '';
   api.search(title, function (error, results) {
     if (!error) {
-      name = results;
-      console.log(name);
-      res.render('main/add-book', { name });
+      // console.log(results[1].industryIdentifiers[1].identifier);
+      console.log();
+      res.render('main/add-book', { results });
     } else {
-      console.log(error);
     }
   });
-  console.log(name);
 });
 
 router.get('/matches', (req, res, next) => {
