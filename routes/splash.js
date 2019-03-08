@@ -49,6 +49,7 @@ router.post('/books/add-book/search', requireUser, (req, res, next) => {
 
 router.post('/books/add-book/new', requireUser, async (req, res, next) => {
   const { title, authors, ISBN, image } = req.body;
+  const { _id } = req.session.currentUser;
   const newBook = {
     ISBN,
     title,
@@ -60,7 +61,10 @@ router.post('/books/add-book/new', requireUser, async (req, res, next) => {
     if (await Book.findOne({ ISBN: true })) {
       console.log('ya esta creado');
     } else {
-      await Book.create(newBook);
+      const newBookCreated = new Book(newBook);
+      const book = await newBookCreated.save();
+      const userUpdated = await User.findByIdAndUpdate(_id, { $push: { books: book._id } }, { new: true });
+      console.log(userUpdated);
     }
     res.render('main/add-book');
   } catch (error) {
