@@ -18,7 +18,7 @@ const userSchema = new Schema({
     type: String,
     required: true
   },
-  books: [{
+  books: {
     item: {
       type: ObjectId,
       ref: 'Book'
@@ -27,7 +27,7 @@ const userSchema = new Schema({
       type: String,
       enum: ['wants', 'haves']
     }
-  }],
+  },
   location: {
     type: String
   },

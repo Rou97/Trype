@@ -63,7 +63,8 @@ router.post('/books/add-book/new', requireUser, async (req, res, next) => {
     } else {
       const newBookCreated = new Book(newBook);
       const book = await newBookCreated.save();
-      const userUpdated = await User.findByIdAndUpdate(_id, { $push: { books: book._id } }, { new: true });
+      const userUpdated = await User.findByIdAndUpdate(_id, { $push: { books: { item: book._id } } }, { new: true });
+
       console.log(userUpdated);
     }
     res.render('main/add-book');
