@@ -50,12 +50,16 @@ router.post('/books/add-book/search', (req, res, next) => {
 router.post('/books/add-book/new', async (req, res, next) => {
   const { title, authors, ISBN, image } = req.body;
   const newBook = {
+    ISBN,
     title,
     authors,
-    ISBN,
     image
   };
   try {
+    console.log(ISBN);
+    console.log(title);
+    console.log(authors);
+    console.log(image);
     await Book.create(newBook);
     res.render('main/add-book');
   } catch (error) {
