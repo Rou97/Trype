@@ -1,7 +1,7 @@
 <h1>Books</h1>
 
-{{#each user.books}}
-    <li>{{this.title}}</li>
+{{#each user.books.item}}
+    <li>{{this.title}}</li> 
+    
 {{/each}}
-
 <a href="/splash/books/add-book">Add a book</a>
