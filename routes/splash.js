@@ -25,7 +25,8 @@ router.get('/profile', requireUser, async (req, res, next) => {
 router.get('/books', requireUser, async (req, res, next) => {
   const { _id } = req.session.currentUser;
   try {
-    const user = await User.findById(_id);
+    const user = await User.findById(_id).populate('books.item');
+    console.log(user);
     res.render('main/books', { user });
   } catch (error) {
     next(error);
@@ -63,7 +64,7 @@ router.post('/books/add-book/new', requireUser, async (req, res, next) => {
     } else {
       const newBookCreated = new Book(newBook);
       const book = await newBookCreated.save();
-      const userUpdated = await User.findByIdAndUpdate(_id, { $push: { books: { item: book._id } } }, { new: true });
+      const userUpdated = await User.findByIdAndUpdate(_id, { $push: { books: { item: book._id, status: 'haves' } } }, { new: true });
 
       console.log(userUpdated);
     }
