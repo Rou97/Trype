@@ -1,22 +1,25 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>{{title}}</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Lora" rel="stylesheet">
-  </head>
-  <body>
-    <nav>
-      {{#if currentUser}}
-        <div>
-          <p>{{currentUser.username}}</p>
-          <form action="/auth/logout" method="POST">
-            <button type="submit">Logout</button>
-          </form>
-        </div>
-      {{/if}}
-    </nav>
-    {{{body}}}
-  </body>
+
+<head>
+  <title>{{title}}</title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Lora" rel="stylesheet">
+</head>
+
+<body>
+  {{#if currentUser}}
+  <nav class="nav-logout">
+    <div>
+      <p>{{currentUser.username}}</p>
+      <form action="/auth/logout" method="POST">
+        <button type="submit">Logout</button>
+      </form>
+    </div>
+  </nav>
+  {{/if}}
+  {{{body}}}
+</body>
+
 </html>
