@@ -1,4 +1,4 @@
-Project M2
+<!-- Project M2
 User Stories
 As a User I want to signup so I can use the app
 As a User I want to Login so I can use the app
@@ -9,7 +9,7 @@ As a User I want to update items so I can update my item in the list offer
 As a User I want to delete items so I can delete my item in the list offer
 As a User I want to have a offer list of VG so I can have match 
 As a User I want to have a wish list so I can can have match
-As a User I want update my profile to change the password or username or location
+As a User I want update my profile to change the password or username or location -->
 Trype
 2.Readme
 # Trype
