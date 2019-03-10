@@ -1,18 +1,9 @@
-<h1>Login</h1>
-
-<form method="POST" action="/auth/login">
-
-  <div class="field" >
-    <label>Username</label>
-    <input type="text" name="username"/>
-  </div>
-
-  <div class="field" >
-    <label>Password</label>
-    <input type="password" name="password"/>
-  </div>
-
-  <div class="field submit">
-    <button type="submit">Login</button>
-  </div>
-</form>
+<div class="signup-container">
+  <h1>Login</h1>
+  <img src="/images/login.png" />
+  <form method="POST" action="/auth/login">
+    <input type="text" name="username" placeholder="Username" class="signup-field"/>
+    <input type="password" name="password" placeholder="Password" class="signup-field"/>
+    <button type="submit" class="signup-button">LOGIN</button>
+  </form>
+</div>

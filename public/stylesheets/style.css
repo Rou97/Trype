@@ -15,7 +15,6 @@ body {
 
 /*---------------------Index-----------------------------------*/
 .index-container {
-  border: 2px solid black;
   width: 100%;
   height: 100vh;
   display: grid;
@@ -61,4 +60,64 @@ body {
   font-size: 3em;
   color: #fff;
   grid-row: 4 / 5;
+}
+
+/*------------------------signup-----------------------------*/
+.signup-container {
+  background-color: #8DA4CD;
+  width: 100%;
+  height: 100vh;
+  color: #fff;
+  display: grid;
+  grid-template-rows: 15% 15% 70%;
+  align-items: center;
+  justify-items: center;
+}
+
+.signup-container h1 {
+  grid-row: 1 / 2;
+  font-size: 5em;
+  align-self: end;
+  font-family: lora;
+}
+
+.signup-container img {
+  grid-row: 2 / 3;
+  align-self: end;
+  width: 20vh;
+  height: 20vh;
+  align-self: start;
+}
+
+.signup-container form {
+  grid-row: 3 / 4;
+  display: grid;
+}
+
+.signup-field {
+  border: 4px solid #fff;
+  border-radius: 10vh;
+  background-color: #839BC4;
+  color: #fff;
+  text-align: center;
+  align-self: start;
+  margin-bottom: 40px;
+  width: 45vh;
+  height: 7vh;
+  font-size: 3em;
+}
+.signup-field::placeholder {
+  color: #fff;
+}
+.signup-button {
+  border: 1px solid #657FAC;
+  border-radius: 10vh;
+  background-color: #657FAC;
+  color: #fff;
+  text-align: center;
+  align-self: start;
+  margin-bottom: 40px;
+  width: 45vh;
+  height: 7vh;
+  font-size: 3em;
 }
