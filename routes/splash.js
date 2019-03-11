@@ -26,7 +26,6 @@ router.get('/books', requireUser, async (req, res, next) => {
   const { _id } = req.session.currentUser;
   try {
     const user = await User.findById(_id).populate('books.item');
-    console.log(user);
     res.render('main/books', { user });
   } catch (error) {
     next(error);
@@ -68,7 +67,9 @@ router.post('/books/add-book/new', requireUser, async (req, res, next) => {
 
       console.log(userUpdated);
     }
-    res.render('main/add-book');
+    const user = await User.findById(_id).populate('books.item');
+    res.render('main/books', { user });
+    //res.render('main/add-book');
   } catch (error) {
     next(error);
   }
