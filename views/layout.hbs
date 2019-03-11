@@ -10,16 +10,18 @@
 
 <body>
   {{#if currentUser}}
-  <nav class="nav-logout">
-    <div>
-      <p>{{currentUser.username}}</p>
-      <form action="/auth/logout" method="POST">
-        <button type="submit">Logout</button>
-      </form>
+  <nav class="nav-logout"></nav>
+    <div class="navNarrow">
+      <i class="fa fa-bars fa-2x"></i>
+      <div class="narrowLinks hidden">
+        <a href="#">Link 1</a>
+        <a href="#">Link 2</a>
+        <a href="#">Link 3</a>
+      </div>
     </div>
-  </nav>
-  {{/if}}
+   </nav>
+   {{/if}}
   {{{body}}}
-</body>
+  </body>
 
 </html>

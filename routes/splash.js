@@ -69,7 +69,6 @@ router.post('/books/add-book/new', requireUser, async (req, res, next) => {
     }
     const user = await User.findById(_id).populate('books.item');
     res.render('main/books', { user });
-    //res.render('main/add-book');
   } catch (error) {
     next(error);
   }
