@@ -44,6 +44,20 @@ router.post('/books/:id', requireUser, async (req, res, next) => {
   res.render('main/books');
 });
 
+router.post('/books/:id/delete', requireUser, async (req, res, next) => {
+  const { id } = req.params;
+  const { _id } = req.session.currentUser;
+  const user = await User.findById(_id);
+  console.log(req.params);
+  try {
+    const deleteBookOnList = await User.findByIdAndUpdate(_id, { $pull: { books: { item: id } } }, { new: true });
+    console.log(deleteBookOnList);
+    res.redirect('/splash/books');
+  } catch (error) {
+    next(error);
+  }
+});
+
 router.get('/books/add-book', requireUser, (req, res, next) => {
   res.render('main/add-book');
 });

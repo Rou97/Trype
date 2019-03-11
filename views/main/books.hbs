@@ -3,7 +3,7 @@
     {{this.item._id}}
     <li><img src="{{this.item.image}}" alt="Book image"></li>
     <li>{{this.item.title}}</li> 
-
+    <li>{{this.status}}</li>
     <form method="POST" action="/splash/books/{{this.item._id}}">
         <select name="select">
             <option value="wants">I want it</option> 
@@ -12,6 +12,12 @@
 
         <div>
             <button type="submit">Add</button>
+        </div>
+
+    </form>
+    <form method="POST" action="/splash/books/{{this.item._id}}/delete">
+        <div>
+            <button type="submit">Delete book</button>
         </div>
 
     </form>
