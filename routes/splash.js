@@ -36,18 +36,27 @@ router.post('/books/:id', requireUser, async (req, res, next) => {
   const { _id } = req.session.currentUser;
   let { select } = req.body;
   const bookId = req.params.id;
-  console.log(bookId);
+  // console.log(bookId);
   const user = await User.findById(_id);
   const book = await Book.findById(bookId);
-  console.log(book._id);
+  // console.log(book._id);
 
-  if (user.books.status === 'got')
+  console.log(user.books.status[0]);
+  console.log(select);
+
+  if (user.books.status[0] === 'got' && select === 'wants') {
+    console.log('Dentro del if');
+    console.log(user.books.status);
+    console.log(user.books);
+    await User.findByIdAndUpdate(_id, { books: { item: book._id, status: 'wants' } }, { new: true });
+    console.log(user.books.status);
+  }
 
   // console.log(user.books.status);
   // console.log(user.books.item);
   // console.log(select);
 
-  { res.render('main/books'); }
+  res.render('main/books');
   // const updateStatus = {
   //   status,
   // };
