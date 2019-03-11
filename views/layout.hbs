@@ -6,22 +6,26 @@
   <link rel='stylesheet' href='/stylesheets/style.css' />
   <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Lora" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 </head>
 
 <body>
   {{#if currentUser}}
-  <nav class="nav-logout"></nav>
-    <div class="navNarrow">
-      <i class="fa fa-bars fa-2x"></i>
-      <div class="narrowLinks hidden">
-        <a href="#">Link 1</a>
-        <a href="#">Link 2</a>
-        <a href="#">Link 3</a>
-      </div>
-    </div>
-   </nav>
-   {{/if}}
+    <nav class="navegacion">
+    <img src="/images/logo-trype.png" class="nav-index-logo">
+    <ul>
+      <li><a href="/splash">Home</a></li>
+      <li><a href="/splash/profile">Profile</a></li>
+      <li><a href="/splash/books">Books</a></li>
+      <li><a href="/splash/matches">Matches</a></li>
+    </ul>
+    <form action="/auth/logout" method="POST">
+      <button type="submit">Logout</button>
+    </form>
+  </nav>
+  <section class="hidden"></section>
+ {{/if}}
   {{{body}}}
-  </body>
+</body>
 
 </html>
