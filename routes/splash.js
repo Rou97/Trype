@@ -32,6 +32,27 @@ router.get('/books', requireUser, async (req, res, next) => {
   }
 });
 
+router.post('/books/:id', requireUser, async (req, res, next) => {
+  const { _id } = req.session.currentUser;
+  let { select } = req.body;
+  const bookId = req.params.id;
+  console.log(bookId);
+  const user = await User.findById(_id);
+  const book = await Book.findById(bookId);
+  console.log(book._id);
+
+  if (user.books.status === 'got')
+
+  // console.log(user.books.status);
+  // console.log(user.books.item);
+  // console.log(select);
+
+  { res.render('main/books'); }
+  // const updateStatus = {
+  //   status,
+  // };
+});
+
 router.get('/books/add-book', requireUser, (req, res, next) => {
   res.render('main/add-book');
 });
@@ -63,7 +84,7 @@ router.post('/books/add-book/new', requireUser, async (req, res, next) => {
     } else {
       const newBookCreated = new Book(newBook);
       const book = await newBookCreated.save();
-      const userUpdated = await User.findByIdAndUpdate(_id, { $push: { books: { item: book._id, status: 'haves' } } }, { new: true });
+      const userUpdated = await User.findByIdAndUpdate(_id, { $push: { books: { item: book._id, status: 'got' } } }, { new: true });
 
       console.log(userUpdated);
     }

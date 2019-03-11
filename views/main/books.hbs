@@ -1,7 +1,20 @@
 <h1>Books</h1>
 
 {{#each user.books.item}}
+    {{this._id}}
     <li>{{this.title}}</li> 
     <li><img src="{{this.image}}" alt="Book image"></li>
+
+    <form method="POST" action="/splash/books/{{this._id}}">
+        <select name="select">
+            <option value="wants">I want it</option> 
+            <option value="got" selected>I got it</option>
+        </select>
+
+        <div>
+            <button type="submit">Add</button>
+        </div>
+
+    </form>
 {{/each}}
 <a href="/splash/books/add-book">Add a book</a>
