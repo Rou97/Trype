@@ -1,12 +1,10 @@
 <h1>Books</h1>
-<p>{{user.books}}</p>
 {{#each user.books}}
-    {{this.item}}
-    {{this._id}}
-    <li>{{this.title}}</li> 
-    <li><img src="{{this.image}}" alt="Book image"></li>
+    {{this.item._id}}
+    <li><img src="{{this.item.image}}" alt="Book image"></li>
+    <li>{{this.item.title}}</li> 
 
-    <form method="POST" action="/splash/books/{{this._id}}">
+    <form method="POST" action="/splash/books/{{this.item._id}}">
         <select name="select">
             <option value="wants">I want it</option> 
             <option value="got" selected>I got it</option>

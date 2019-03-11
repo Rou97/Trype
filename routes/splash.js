@@ -43,7 +43,9 @@ router.post('/books/:id', requireUser, async (req, res, next) => {
 
   // console.log(user.books.status[0]);
   // console.log(select);
-  const user2 = await User.findOneAndUpdate({ _id: '5c866611d2f15c68a4aaac20', 'books.item': '5c86661ad2f15c68a4aaac21' }, { $set: { 'books.$.status': 'wants' } });
+  // const user2 = await User.findOneAndUpdate({ _id: '5c866611d2f15c68a4aaac20', 'books.item': '5c86661ad2f15c68a4aaac21' }, { $set: { 'books.$.status': 'wants' } });
+
+  const user2 = await User.findOneAndUpdate({ _id: user, 'books.item': book }, { $set: { 'books.$.status': 'wants' } });
 
   // if (user.books.status[0] === 'got' && select === 'wants') {
   //   // console.log('Dentro del if');
