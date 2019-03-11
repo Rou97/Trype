@@ -16,26 +16,30 @@ body {
 /*---------------------Layout------------------------------------*/
 
 .navegacion{
-  height: 40px;
+  height: 50px;
   width: 100%;
   background-color: #E57067;
   display: grid;
-  grid-template-rows: 80% 20%;
+  grid-template-columns: 10% 70% 20%;
   align-items: center;
-  justify-items: start;
+  justify-items: center;
   position: fixed; 
   top: 0;
-  overflow: hidden;
 }
-
-.navegacion ul{
+.navegacion img {
   grid-column: 1 / 2;
+  height: 60px;
+  width: 70px;
+  justify-self: stretch;
+}
+.navegacion ul{
+  grid-column: 2 / 3;
   list-style-type: none;
   text-align: center;
-  margin-right: 5px;
+  
 }
 .navegacion li{
-  margin-right: 5px;
+  margin-right: 1px;
   display: inline;
   text-align: center;
  }
@@ -46,7 +50,7 @@ body {
 }
 
 .navegacion form {
-  grid-column: 2 / 3;
+  grid-column: 3 / 4;
 }
 
 .navegacion button {
@@ -55,7 +59,7 @@ body {
 }
 
 .hidden {
-  margin-top:40px;
+  margin-top:50px;
 }
 /*---------------------Index-----------------------------------*/
 .index-container {
@@ -169,18 +173,43 @@ body {
 
 .splash-container {
   width: 100%;
-  height: 100vh;
+  height: 94vh;
   display: grid;
   grid-template-rows: 33% 33% 33%;
 }
-
+.splash-container a {
+  text-decoration: none;
+  color: #e57067;
+  font-size: 1.3em;
+  font-weight: bold;
+}
 .section-profile {
-  background-color: #F9CCC9;
+  display: grid;
+  padding-top: 5px;
+  background-color: #f9ccc9;
+  justify-items: center;
+}
+.section-profile img {
+  height: 150px;
+  width: 200px;
 }
 .section-books {
-  
+  display: grid;
+  padding-top: 5px;
+  background-color: #fff;
+  justify-items: center;
 }
-
+.section-books img {
+  height: 150px;
+  width: 200px;
+}
 .section-matches {
-  background-color: #F9CCC9;
+  display: grid;
+  padding-top: 5px;
+  background-color: #f9ccc9;
+  justify-items: center;
+}
+.section-matches img {
+  height: 150px;
+  width: 150px;
 }
