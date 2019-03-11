@@ -1,6 +1,7 @@
 <h1>Books</h1>
-
-{{#each user.books.item}}
+<p>{{user.books}}</p>
+{{#each user.books}}
+    {{this.item}}
     {{this._id}}
     <li>{{this.title}}</li> 
     <li><img src="{{this.image}}" alt="Book image"></li>

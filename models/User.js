@@ -18,16 +18,15 @@ const userSchema = new Schema({
     type: String,
     required: true
   },
-  books: {
+  books: [{
     item: {
       type: ObjectId,
       ref: 'Book'
     },
     status: {
-      type: String,
-      enum: ['wants', 'got']
+      type: String
     }
-  },
+  }],
   location: {
     type: String
   },
