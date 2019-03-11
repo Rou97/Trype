@@ -11,27 +11,20 @@
 
 <body>
   {{#if currentUser}}
-  <nav class="nav-logout"></nav>
-    <p>{{currentUser.username}}</p>
-    <div class="navNarrow">
-      <i class="fa fa-bars fa-2x"></i>
-      <div class="narrowLinks hidden">
-        <a href="#">Home</a>
-        <a href="#">Profile</a>
-        <a href="#">Books</a>
-        <a href="#">Matches</a>
-        <a href="#">
-          <form action="/auth/logout" method="POST">
-            <button type="submit">Logout</button>
-          </form>
-      <div>
-    </div>
-   </nav>
-   {{/if}}
+    <nav class="navegacion">
+    <ul>
+      <li><a href="/splash">Home</a></li>
+      <li><a href="/splash/profile">Profile</a></li>
+      <li><a href="/splash/books">Books</a></li>
+      <li><a href="/splash/matches">Matches</a></li>
+    </ul>
+    <form action="/auth/logout" method="POST">
+      <button type="submit">Logout</button>
+    </form>
+  </nav>
+  <section class="hidden"></section>
+ {{/if}}
   {{{body}}}
-    
-  
- 
 </body>
 
 </html>
