@@ -50,7 +50,7 @@ router.post('/books/:id/delete', requireUser, async (req, res, next) => {
   const user = await User.findById(_id);
   try {
     const deleteBookOnList = await User.findByIdAndUpdate(_id, { $pull: { books: { item: id } } }, { new: true });
-    const deleteBookOnDB = await Book.findByIdAndDelete(id);
+    // const deleteBookOnDB = await Book.findByIdAndDelete(id);
     res.redirect('/splash/books');
   } catch (error) {
     next(error);
@@ -81,15 +81,17 @@ router.post('/books/add-book/new', requireUser, async (req, res, next) => {
     image
   };
   try {
-    // console.log(req.session.currentUser.username);
-    if (await Book.findOne({ ISBN: true })) {
+    const test = await Book.findOne({ ISBN });
+    if (test) {
       console.log('ya esta creado');
+      const userUpdated1 = await User.findByIdAndUpdate(_id, { $push: { books: { item: test._id, status: 'got' } } }, { new: true });
+      console.log(userUpdated1);
     } else {
       const newBookCreated = new Book(newBook);
       const book = await newBookCreated.save();
-      const userUpdated = await User.findByIdAndUpdate(_id, { $push: { books: { item: book._id, status: 'got' } } }, { new: true });
+      const userUpdated2 = await User.findByIdAndUpdate(_id, { $push: { books: { item: book._id, status: 'got' } } }, { new: true });
 
-      console.log(userUpdated);
+      console.log(userUpdated2);
     }
     const user = await User.findById(_id).populate('books.item');
     res.render('main/books', { user });
@@ -101,8 +103,53 @@ router.post('/books/add-book/new', requireUser, async (req, res, next) => {
 router.get('/matches', requireUser, (req, res, next) => {
   res.render('main/matches');
 });
-router.post('/matches', requireUser, (req, res, next) => {
+
+router.post('/matches', requireUser, async (req, res, next) => {
   const { _id } = req.session.currentUser;
+
+  const user = await User.findById(_id);
+  const arr = [];
+  for (let i = 0; i < user.books.length; i++) {
+    if (user.books[i].status === 'wants') {
+      const itemForSwap = user.books[i].item;
+
+      const test = await Book.findById(itemForSwap);
+      // test es un objeto de libro
+
+      const test2 = test._id;
+      // test 2 es el id del test1
+
+      const test3 = await User.find({ 'books.item': test2 });
+      // test 3 es un array de los usuarios que tengan ese libro
+
+      for (let j = 0; j < test3.length; j++) {
+        // console.log(test3[j]._id);
+        // console.log(test3[j].books[j].status);
+
+        arr.push(test3[j]._id);
+        arr.push(test3[j].books[j].status);
+        console.log(arr);
+        console.log('                 ');
+      }
+
+      // if (arr[1] !== arr[3]) {
+      //   console.log('Match!');
+      // }
+
+      //   // console.log(test3[j]._id);
+      //   for (let k = 0; k < test3[j].books.length; k++) {
+      //     // console.log(test2);
+      //     // console.log(test3[j]._id);
+      //     // console.log('                    ');
+      //     if (test2 === test3[j]._id) {
+      //       // console.log('estoy dentro');
+      //     }
+      //     // console.log(test3[j].books[k].status);
+      //   }
+      // }
+    }
+  }
+
   res.redirect('/splash/matches');
 });
 
