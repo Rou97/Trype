@@ -50,6 +50,7 @@ router.post('/books/:id/delete', requireUser, async (req, res, next) => {
   const user = await User.findById(_id);
   try {
     const deleteBookOnList = await User.findByIdAndUpdate(_id, { $pull: { books: { item: id } } }, { new: true });
+    const deleteBookOnDB = await Book.findByIdAndDelete(id);
     res.redirect('/splash/books');
   } catch (error) {
     next(error);
