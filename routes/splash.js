@@ -48,10 +48,8 @@ router.post('/books/:id/delete', requireUser, async (req, res, next) => {
   const { id } = req.params;
   const { _id } = req.session.currentUser;
   const user = await User.findById(_id);
-  console.log(req.params);
   try {
     const deleteBookOnList = await User.findByIdAndUpdate(_id, { $pull: { books: { item: id } } }, { new: true });
-    console.log(deleteBookOnList);
     res.redirect('/splash/books');
   } catch (error) {
     next(error);
@@ -66,7 +64,6 @@ router.post('/books/add-book/search', requireUser, (req, res, next) => {
   const { title } = req.body;
   api.search(title, function (error, results) {
     if (!error) {
-      console.log(results[0].authors);
       res.render('main/add-book', { results });
     } else {
     }
@@ -102,6 +99,10 @@ router.post('/books/add-book/new', requireUser, async (req, res, next) => {
 
 router.get('/matches', requireUser, (req, res, next) => {
   res.render('main/matches');
+});
+router.post('/matches', requireUser, (req, res, next) => {
+  const { _id } = req.session.currentUser;
+  res.redirect('/splash/matches');
 });
 
 module.exports = router;
