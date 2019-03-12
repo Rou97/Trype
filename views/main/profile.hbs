@@ -1,10 +1,20 @@
 <div class="profile-container">
-    <img src="" alt="Imagen Usuario">
-    <p>Username</p>
-    <p>{{user.username}}</p>
-    <p>email</p>
-    <p>{{user.email}}</p>
-    <p>Location</p>
-    <p>{{user.location}}</p>
+    <section class="profile-image">
+        <img src="/images/default-profile.png" alt="Imagen Usuario">
+    </section>
+    <section class="profile-info">
+        <div class="profile-username">
+            <p>Username</p>
+            <p>{{user.username}}</p>
+        </div>
+        <div class="profile-email">
+            <p>E-Mail</p>
+            <p>{{user.email}}</p>
+        </div>
+        <div class="profile-location">
+            <p>Location</p>
+            <p>{{user.location}}</p>
+        </div>
+    </section>
 </div>
 
