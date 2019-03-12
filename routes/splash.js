@@ -32,17 +32,17 @@ router.get('/books', requireUser, async (req, res, next) => {
   }
 });
 
-router.post('/books/:id', requireUser, async (req, res, next) => {
-  const { _id } = req.session.currentUser;
-  let { select } = req.body;
-  const bookId = req.params.id;
-  const user = await User.findById(_id);
-  const book = await Book.findById(bookId);
+// router.post('/books/:id', requireUser, async (req, res, next) => {
+//   const { _id } = req.session.currentUser;
+//   let { select } = req.body;
+//   const bookId = req.params.id;
+//   const user = await User.findById(_id);
+//   const book = await Book.findById(bookId);
 
-  const user2 = await User.findOneAndUpdate({ _id: user, 'books.item': book }, { $set: { 'books.$.status': select } });
+//   const user2 = await User.findOneAndUpdate({ _id: user, 'books.item': book }, { $set: { 'books.$.status': select } });
 
-  res.render('main/books');
-});
+//   res.render('main/books');
+// });
 
 router.post('/books/:id/delete', requireUser, async (req, res, next) => {
   const { id } = req.params;
@@ -108,7 +108,7 @@ router.post('/books/add-book-got/new', requireUser, async (req, res, next) => {
       console.log(userUpdated2);
     }
     const user = await User.findById(_id).populate('books.item');
-    res.render('/main/books', { user });
+    res.render('main/books', { user });
   } catch (error) {
     next(error);
   }
@@ -116,7 +116,6 @@ router.post('/books/add-book-got/new', requireUser, async (req, res, next) => {
 
 router.post('/books/add-book-wants/new', requireUser, async (req, res, next) => {
   const { title, authors, ISBN, image } = req.body;
-  const { _id } = req.session.currentUser;
   const newBook = {
     ISBN,
     title,
@@ -124,27 +123,31 @@ router.post('/books/add-book-wants/new', requireUser, async (req, res, next) => 
     image
   };
   try {
-    const test = await Book.findOne({ ISBN });
-    if (test) {
-      console.log('ya esta creado');
-      const userUpdated1 = await User.findByIdAndUpdate(_id, { $push: { books: { item: test._id, status: 'wants' } } }, { new: true });
-      console.log(userUpdated1);
-    } else {
-      const newBookCreated = new Book(newBook);
-      const book = await newBookCreated.save();
-      const userUpdated2 = await User.findByIdAndUpdate(_id, { $push: { books: { item: book._id, status: 'wants' } } }, { new: true });
+    let book = await Book.findOne({ ISBN });
 
-      console.log(userUpdated2);
+    if (!book) {
+      book = await Book.create(newBook);
     }
-    const user = await User.findById(_id).populate('books.item');
-    res.render('/main/books', { user });
+
+    const { books, _id } = req.session.currentUser;
+
+    const isInFavorites = books.some((userBooks) => {
+      return book._id.equals(userBooks._id);
+    });
+
+    if (!isInFavorites) {
+      const updatedUser = await User.findByIdAndUpdate(_id, { $push: { books: { item: book._id, status: 'wants' } } }, { new: true });
+      req.session.currentUser = updatedUser;
+    }
+
+    res.redirect('/splash/books');
   } catch (error) {
     next(error);
   }
 });
 
 router.get('/matches', requireUser, (req, res, next) => {
-  res.render('main/matches');
+  res.render('/main/matches');
 });
 
 router.post('/matches', requireUser, async (req, res, next) => {
