@@ -1,26 +1,29 @@
 <div class="books-container">
-    <h1>Books</h1>
-    {{#each user.books}}
-        <li><img src="{{this.item.image}}" alt="Book image"></li>
-        <li>{{this.item.title}}</li> 
-        <li>{{this.status}}</li>
-        {{!-- <form method="POST" action="/splash/books/{{this.item._id}}">
-            <select name="select">
-                <option value="wants">I want it</option> 
-                <option value="got" selected>I got it</option>
-            </select>
-
-            <div>
-                <button type="submit">Add</button>
-            </div>
-
-        </form> --}}
-        <form method="POST" action="/splash/books/{{this.item._id}}/delete">
-            <div>
-                <button type="submit">Delete book</button>
-            </div>
-
-        </form>
-    {{/each}}
-    <a href="/splash/books/add-book">Add a book</a>
+    <section class="books-list">
+        {{#each user.books}}
+            <article class="">
+                <h4>{{this.item.title}}</h4>
+                <img src="{{this.item.image}}" alt="Book image">
+                <h5>{{this.status}}</h5>
+                <form method="POST" action="/splash/books/{{this.item._id}}/delete">
+                    <div>
+                        <button type="submit">Delete book</button>
+                    </div>
+                </form>
+            </article>
+        {{/each}}
+    </section>
+    <a href="/splash/books/add-book-wants">Add book to WANTS</a>
+    <a href="/splash/books/add-book-got">Add book to GOT</a>
 </div>
+ {{!-- <form method="POST" action="/splash/books/{{this.item._id}}">
+                <select name="select">
+                    <option value="wants">I want it</option> 
+                    <option value="got" selected>I got it</option>
+                </select>
+
+                <div>
+                    <button type="submit">Add</button>
+                </div>
+
+            </form> --}}

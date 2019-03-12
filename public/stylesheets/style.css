@@ -274,3 +274,15 @@ body {
   height: 80px;
   width: 80px;
 }
+
+/*-----------------------Books----------------------*/
+.profile-container {
+  background-color: #f9ccc9;
+  width: 100%;
+  height: 100vh;
+  color: #fff;
+  display: grid;
+  grid-template-rows: 40% 30% 30%;
+  align-items: center;
+  justify-items: center;
+}
