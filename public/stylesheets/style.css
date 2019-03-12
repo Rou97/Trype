@@ -221,7 +221,7 @@ body {
   height: 100vh;
   color: #fff;
   display: grid;
-  grid-template-rows: 30% 70%;
+  grid-template-rows: 50% 30% 20%;
   align-items: center;
   justify-items: center;
 }
@@ -231,7 +231,7 @@ body {
   width: 200px;
   text-align: center;
 }
-.profile-container img {
+.profile-image img {
   height: 200px;
   width: 200px;
   border: 2px solid black;
@@ -240,19 +240,37 @@ body {
 
 .profile-info {
   width: 100%;
-  border: 2px solid black;
   display: grid;
-  grid-template-rows: 20% 20% 20%;
+  grid-template-rows: 30% 30% 30% 10%;
+  font-size: 1.2em;
 }
 .profile-username {
-  display: grid;
-  grid-template-columns: 50% 50%;
+  display: flex;
+  justify-content: space-between;
+  padding: 1px 20px;
+  border-bottom: 2px solid grey;
 }
 .profile-email {
-  display: grid;
-  grid-template-columns: 50% 50%;
+  display: flex;
+  justify-content: space-between;
+  padding: 1px 20px;
+  border-bottom: 2px solid grey;
 }
 .profile-location {
-  display: grid;
-  grid-template-columns: 50% 50%;
+  display: flex;
+  justify-content: space-between;
+  padding: 1px 20px;
+  border-bottom: 2px solid grey;
+}
+.profile-field {
+  color: grey;
+  font-weight: bold;
+}
+.profile-field-data {
+  color: #30515E;
+  font-weight: bold;
+}
+.profile-edit img{
+  height: 80px;
+  width: 80px;
 }
