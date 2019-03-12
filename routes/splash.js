@@ -50,7 +50,6 @@ router.post('/books/:id/delete', requireUser, async (req, res, next) => {
   const user = await User.findById(_id);
   try {
     const deleteBookOnList = await User.findByIdAndUpdate(_id, { $pull: { books: { item: id } } }, { new: true });
-    // const deleteBookOnDB = await Book.findByIdAndDelete(id);
     res.redirect('/splash/books');
   } catch (error) {
     next(error);
@@ -87,7 +86,6 @@ router.post('/books/add-book-got/search', requireUser, (req, res, next) => {
 
 router.post('/books/add-book-got/new', requireUser, async (req, res, next) => {
   const { title, authors, ISBN, image } = req.body;
-  const { _id } = req.session.currentUser;
   const newBook = {
     ISBN,
     title,
@@ -95,20 +93,24 @@ router.post('/books/add-book-got/new', requireUser, async (req, res, next) => {
     image
   };
   try {
-    const test = await Book.findOne({ ISBN });
-    if (test) {
-      console.log('ya esta creado');
-      const userUpdated1 = await User.findByIdAndUpdate(_id, { $push: { books: { item: test._id, status: 'got' } } }, { new: true });
-      console.log(userUpdated1);
-    } else {
-      const newBookCreated = new Book(newBook);
-      const book = await newBookCreated.save();
-      const userUpdated2 = await User.findByIdAndUpdate(_id, { $push: { books: { item: book._id, status: 'got' } } }, { new: true });
+    let book = await Book.findOne({ ISBN });
 
-      console.log(userUpdated2);
+    if (!book) {
+      book = await Book.create(newBook);
     }
-    const user = await User.findById(_id).populate('books.item');
-    res.render('main/books', { user });
+
+    const { books, _id } = req.session.currentUser;
+
+    const isInFavorites = books.some((userBooks) => {
+      return book._id.equals(userBooks._id);
+    });
+
+    if (!isInFavorites) {
+      const updatedUser = await User.findByIdAndUpdate(_id, { $push: { books: { item: book._id, status: 'got' } } }, { new: true });
+      req.session.currentUser = updatedUser;
+    }
+
+    res.redirect('/splash/books');
   } catch (error) {
     next(error);
   }
@@ -140,6 +142,22 @@ router.post('/books/add-book-wants/new', requireUser, async (req, res, next) => 
       req.session.currentUser = updatedUser;
     }
 
+    // aqui
+    const user = await User.findById(_id);
+
+    const test = await User.find();
+
+    // entra en un loop para comprobar cada usuario
+    for (let i = 0; i < test.length; i++) {
+      for (let j = 0; j < test.length; j++) {
+        // console.log(test[i].books[j].status.toString());
+        if ((book._id.toString() === test[i].books[j].item.toString()) && test[i].books[j].status.toString() === 'got') {
+          // Aqui entra solo si es got
+          console.log(test[i].email);
+        }
+      }
+    }
+
     res.redirect('/splash/books');
   } catch (error) {
     next(error);
@@ -154,35 +172,29 @@ router.post('/matches', requireUser, async (req, res, next) => {
   const { _id } = req.session.currentUser;
 
   const user = await User.findById(_id);
-  const arr = [];
-  for (let i = 0; i < user.books.length; i++) {
-    if (user.books[i].status === 'wants') {
-      const itemForSwap = user.books[i].item;
+  // const arr = [];
+  // for (let i = 0; i < user.books.length; i++) {
+  //   if (user.books[i].status === 'wants') {
+  //     const itemForSwap = user.books[i].item;
 
-      const test = await Book.findById(itemForSwap);
-      // test es un objeto de libro
+  //     const test = await Book.findById(itemForSwap);
 
-      const test2 = test._id;
-      // test 2 es el id del test1
+  //     const test2 = test._id;
 
-      const test3 = await User.find({ 'books.item': test2 });
-      // test 3 es un array de los usuarios que tengan ese libro
+  //     const test3 = await User.find({ 'books.item': test2 });
 
-      for (let j = 0; j < test3.length; j++) {
-        // console.log(test3[j]._id);
-        // console.log(test3[j].books[j].status);
+  //     for (let j = 0; j < test3.length; j++) {
+  //       arr.push(test3[j]._id);
+  //       arr.push(test3[j].books[j].status);
+  //       console.log(arr);
+  //       console.log('                 ');
+  //     }
 
-        arr.push(test3[j]._id);
-        arr.push(test3[j].books[j].status);
-        console.log(arr);
-        console.log('                 ');
-      }
-
-      if (arr[1] !== arr[3]) {
-        console.log('Match!');
-      }
-    }
-  }
+  //     if (arr[1] !== arr[3]) {
+  //       console.log('Match!');
+  //     }
+  //   }
+  // }
 
   res.redirect('/splash/matches');
 });
