@@ -1,6 +1,6 @@
-<h1>Add a book</h1>
+<h1>Add a book Got</h1>
 
-<form method="POST" action="/splash/books/add-book/search">
+<form method="POST" action="/splash/books/add-book-got/search">
 
   <div class="field" >
     <label>Title</label>
@@ -17,7 +17,7 @@
     <p>{{this.industryIdentifiers.1.identifier}}</p>
     <p>{{this.authors}}</p>
     
-    <form method="POST" action="/splash/books/add-book/new">
+    <form method="POST" action="/splash/books/add-book-got/new">
         
         <input type="text" name="title" value="{{this.title}}"/>
         <input type="text" name="image" value="{{this.thumbnail}}"/>
@@ -26,8 +26,9 @@
         
     
         <div>
-            <button type="submit">Add</button>
+            <button type="submit">Add to Got</button>
         </div>
+        
     </form>
 
 

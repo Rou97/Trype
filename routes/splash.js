@@ -57,21 +57,35 @@ router.post('/books/:id/delete', requireUser, async (req, res, next) => {
   }
 });
 
-router.get('/books/add-book', requireUser, (req, res, next) => {
-  res.render('main/add-book');
+router.get('/books/add-book-wants', requireUser, (req, res, next) => {
+  res.render('main/add-book-wants');
 });
 
-router.post('/books/add-book/search', requireUser, (req, res, next) => {
+router.get('/books/add-book-got', requireUser, (req, res, next) => {
+  res.render('main/add-book-got');
+});
+
+router.post('/books/add-book-wants/search', requireUser, (req, res, next) => {
   const { title } = req.body;
   api.search(title, function (error, results) {
     if (!error) {
-      res.render('main/add-book', { results });
+      res.render('main/add-book-wants', { results });
     } else {
     }
   });
 });
 
-router.post('/books/add-book/new', requireUser, async (req, res, next) => {
+router.post('/books/add-book-got/search', requireUser, (req, res, next) => {
+  const { title } = req.body;
+  api.search(title, function (error, results) {
+    if (!error) {
+      res.render('main/add-book-got', { results });
+    } else {
+    }
+  });
+});
+
+router.post('/books/add-book-got/new', requireUser, async (req, res, next) => {
   const { title, authors, ISBN, image } = req.body;
   const { _id } = req.session.currentUser;
   const newBook = {
@@ -94,7 +108,36 @@ router.post('/books/add-book/new', requireUser, async (req, res, next) => {
       console.log(userUpdated2);
     }
     const user = await User.findById(_id).populate('books.item');
-    res.render('main/books', { user });
+    res.render('/main/books', { user });
+  } catch (error) {
+    next(error);
+  }
+});
+
+router.post('/books/add-book-wants/new', requireUser, async (req, res, next) => {
+  const { title, authors, ISBN, image } = req.body;
+  const { _id } = req.session.currentUser;
+  const newBook = {
+    ISBN,
+    title,
+    authors,
+    image
+  };
+  try {
+    const test = await Book.findOne({ ISBN });
+    if (test) {
+      console.log('ya esta creado');
+      const userUpdated1 = await User.findByIdAndUpdate(_id, { $push: { books: { item: test._id, status: 'wants' } } }, { new: true });
+      console.log(userUpdated1);
+    } else {
+      const newBookCreated = new Book(newBook);
+      const book = await newBookCreated.save();
+      const userUpdated2 = await User.findByIdAndUpdate(_id, { $push: { books: { item: book._id, status: 'wants' } } }, { new: true });
+
+      console.log(userUpdated2);
+    }
+    const user = await User.findById(_id).populate('books.item');
+    res.render('/main/books', { user });
   } catch (error) {
     next(error);
   }
@@ -132,21 +175,9 @@ router.post('/matches', requireUser, async (req, res, next) => {
         console.log('                 ');
       }
 
-      // if (arr[1] !== arr[3]) {
-      //   console.log('Match!');
-      // }
-
-      //   // console.log(test3[j]._id);
-      //   for (let k = 0; k < test3[j].books.length; k++) {
-      //     // console.log(test2);
-      //     // console.log(test3[j]._id);
-      //     // console.log('                    ');
-      //     if (test2 === test3[j]._id) {
-      //       // console.log('estoy dentro');
-      //     }
-      //     // console.log(test3[j].books[k].status);
-      //   }
-      // }
+      if (arr[1] !== arr[3]) {
+        console.log('Match!');
+      }
     }
   }
 
