@@ -1,25 +1,26 @@
-<h1>Books</h1>
-{{#each user.books}}
-    {{this.item._id}}
-    <li><img src="{{this.item.image}}" alt="Book image"></li>
-    <li>{{this.item.title}}</li> 
-    <li>{{this.status}}</li>
-    <form method="POST" action="/splash/books/{{this.item._id}}">
-        <select name="select">
-            <option value="wants">I want it</option> 
-            <option value="got" selected>I got it</option>
-        </select>
+<div class="books-container">
+    <h1>Books</h1>
+    {{#each user.books}}
+        <li><img src="{{this.item.image}}" alt="Book image"></li>
+        <li>{{this.item.title}}</li> 
+        <li>{{this.status}}</li>
+        {{!-- <form method="POST" action="/splash/books/{{this.item._id}}">
+            <select name="select">
+                <option value="wants">I want it</option> 
+                <option value="got" selected>I got it</option>
+            </select>
 
-        <div>
-            <button type="submit">Add</button>
-        </div>
+            <div>
+                <button type="submit">Add</button>
+            </div>
 
-    </form>
-    <form method="POST" action="/splash/books/{{this.item._id}}/delete">
-        <div>
-            <button type="submit">Delete book</button>
-        </div>
+        </form> --}}
+        <form method="POST" action="/splash/books/{{this.item._id}}/delete">
+            <div>
+                <button type="submit">Delete book</button>
+            </div>
 
-    </form>
-{{/each}}
-<a href="/splash/books/add-book">Add a book</a>
+        </form>
+    {{/each}}
+    <a href="/splash/books/add-book">Add a book</a>
+</div>

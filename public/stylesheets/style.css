@@ -221,7 +221,7 @@ body {
   height: 100vh;
   color: #fff;
   display: grid;
-  grid-template-rows: 50% 30% 20%;
+  grid-template-rows: 40% 30% 30%;
   align-items: center;
   justify-items: center;
 }
