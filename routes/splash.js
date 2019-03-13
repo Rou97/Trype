@@ -142,17 +142,14 @@ router.post('/books/add-book-wants/new', requireUser, async (req, res, next) => 
       req.session.currentUser = updatedUser;
     }
 
-    // aqui
+    // match
     const user = await User.findById(_id);
 
     const test = await User.find();
 
-    // entra en un loop para comprobar cada usuario
     for (let i = 0; i < test.length; i++) {
       for (let j = 0; j < test.length; j++) {
-        // console.log(test[i].books[j].status.toString());
         if ((book._id.toString() === test[i].books[j].item.toString()) && test[i].books[j].status.toString() === 'got') {
-          // Aqui entra solo si es got
           console.log(test[i].email);
         }
       }
