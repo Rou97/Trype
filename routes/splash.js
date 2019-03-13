@@ -47,9 +47,9 @@ router.get('/books', requireUser, async (req, res, next) => {
 router.post('/books/:id/delete', requireUser, async (req, res, next) => {
   const { id } = req.params;
   const { _id } = req.session.currentUser;
-  const user = await User.findById(_id);
   try {
-    const deleteBookOnList = await User.findByIdAndUpdate(_id, { $pull: { books: { item: id } } }, { new: true });
+    const updatedUser = await User.findByIdAndUpdate(_id, { $pull: { books: { item: id } } }, { new: true });
+    req.session.currentUser = updatedUser;
     // const deleteMatch = await User.findByIdAndUpdate(_id, { $pull: { match: { OtherUserId: id } } }, { new: true });
     res.redirect('/splash/books');
   } catch (error) {
@@ -135,7 +135,7 @@ router.post('/books/add-book-wants/new', requireUser, async (req, res, next) => 
     const { books, _id } = req.session.currentUser;
 
     const isInFavorites = books.some((userBooks) => {
-      return book._id.equals(userBooks._id);
+      return book._id.equals(userBooks.item);
     });
 
     if (!isInFavorites) {
