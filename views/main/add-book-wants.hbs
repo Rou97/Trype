@@ -1,27 +1,40 @@
 <div class="wants-container">
+  <section class="search-wants">
     <form method="POST" action="/splash/books/add-book-wants/search">
-        <div class="field" >
-          <input type="text" name="title" class="searchTerm" placeholder="What book would you like? " >
-          <button type="submit" class="searchButton">
-            <i class="fa fa-search"></i>
-          </button>
-        </div>
+        <input type="text" name="title" class="searchTerm" placeholder="What book would you like? " >
+        <button type="submit" class="searchButton">
+          <i class="fa fa-search"></i>
+        </button>
     </form>
-  <section class="results-wants">
+  </section>
+
+  <section class="books-list">
     {{#each results}}
+       <article class="book-view">
+        <h4>{{this.title}}</h4>
         <img src="{{this.thumbnail}}" alt="">
-        <p>{{this.title}}</p>
-        <p>{{this.industryIdentifiers.1.identifier}}</p>
-        <p>{{this.authors}}</p>
+        {{!-- <p>{{this.industryIdentifiers.1.identifier}}</p>
+        <p>{{this.authors}}</p> --}}
         <form method="POST" action="/splash/books/add-book-wants/new">
-            <input type="text" name="title" value="{{this.title}}"/>
-            <input type="text" name="image" value="{{this.thumbnail}}"/>
-            <input type="text" name="ISBN" value="{{this.industryIdentifiers.1.identifier}}"/>
-            <input type="text" name="authors" value="{{this.authors}}"/>
+            <input type="text" name="title" value="{{this.title}}" hidden/>
+            <input type="text" name="image" value="{{this.thumbnail}}" hidden/>
+            <input type="text" name="ISBN" value="{{this.industryIdentifiers.1.identifier}}"hidden/>
+            <input type="text" name="authors" value="{{this.authors}}" hidden/>
             <div>
-                <button type="submit">Add to Wants</button>
+                <button type="submit">I want</button>
             </div>
-          </form>
+        </form>
+        <form method="POST" action="/splash/books/add-book-got/new">
+            <input type="text" name="title" value="{{this.title}}" hidden/>
+            <input type="text" name="image" value="{{this.thumbnail}}" hidden/>
+            <input type="text" name="ISBN" value="{{this.industryIdentifiers.1.identifier}}"hidden/>
+            <input type="text" name="authors" value="{{this.authors}}" hidden/>
+            <div>
+                <button type="submit">I have</button>
+            </div>
+        </form>
+      </article>
     {{/each}}
   </section>
+  
 </div>
