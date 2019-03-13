@@ -1,35 +1,34 @@
-<h1>Add a book Wants</h1>
-
-<form method="POST" action="/splash/books/add-book-wants/search">
-
-  <div class="field" >
-    <label>Title</label>
-    <input type="text" name="title"/>
-  </div>
-
-  <div class="field submit">
-    <button type="submit">Search</button>
-  </div>
-</form>
-{{#each results}}
-    <img src="{{this.thumbnail}}" alt="">
-    <p>{{this.title}}</p>
-    <p>{{this.industryIdentifiers.1.identifier}}</p>
-    <p>{{this.authors}}</p>
-    
-    <form method="POST" action="/splash/books/add-book-wants/new">
+<div class="wants-container">
+  <h1>Add a book Wants</h1>
+  <form method="POST" action="/splash/books/add-book-wants/search">
+    <div class="field" >
+      <label>Title</label>
+      <input type="text" name="title"/>
+    </div>
+    <div class="field submit">
+      <button type="submit">Search</button>
+    </div>
+  </form>
+  {{#each results}}
+      <img src="{{this.thumbnail}}" alt="">
+      <p>{{this.title}}</p>
+      <p>{{this.industryIdentifiers.1.identifier}}</p>
+      <p>{{this.authors}}</p>
+      
+      <form method="POST" action="/splash/books/add-book-wants/new">
+          
+          <input type="text" name="title" value="{{this.title}}"/>
+          <input type="text" name="image" value="{{this.thumbnail}}"/>
+          <input type="text" name="ISBN" value="{{this.industryIdentifiers.1.identifier}}"/>
+          <input type="text" name="authors" value="{{this.authors}}"/>
+          
+      
+          <div>
+              <button type="submit">Add to Wants</button>
+          </div>
         
-        <input type="text" name="title" value="{{this.title}}"/>
-        <input type="text" name="image" value="{{this.thumbnail}}"/>
-        <input type="text" name="ISBN" value="{{this.industryIdentifiers.1.identifier}}"/>
-        <input type="text" name="authors" value="{{this.authors}}"/>
-        
-    
-        <div>
-            <button type="submit">Add to Wants</button>
-        </div>
-       
-    </form>
+      </form>
 
 
-{{/each}}
+  {{/each}}
+</div>
