@@ -1,33 +1,22 @@
 <div class="books-container">
     <section class="books-list">
         {{#each user.books}}
-            <article class="book-view">
-                <h4>{{this.item.title}}</h4>
-                <img src="{{this.item.image}}" alt="Book image">
-                <h5>{{this.status}}</h5>
-                <form method="POST" action="/splash/books/{{this.item._id}}/delete">
-                    <div>
-                        <button type="submit"><img src="/images/books-delete.png" class="books-img-delete" /></button>
-                    </div>
-                </form>
-            </article>
+        <article class="book-view">
+            <h4>{{this.item.title}}</h4>
+            <img src="{{this.item.image}}" alt="Book image">
+            <h5>{{this.status}}</h5>
+            <form method="POST" action="/splash/books/{{this.item._id}}/delete">
+                <div>
+                    <button type="submit"><img src="/images/books-delete.png" class="books-img-delete" /></button>
+                </div>
+            </form>
+        </article>
         {{/each}}
     </section>
-    <div class="shareWants">
-        <a href="/splash/books/add-book-wants">+</a>
-    </div>
-    <div class="shareGot">
-        <a href="/splash/books/add-book-got">-</a>
-     </div>
 </div>
- {{!-- <form method="POST" action="/splash/books/{{this.item._id}}">
-                <select name="select">
-                    <option value="wants">I want it</option> 
-                    <option value="got" selected>I got it</option>
-                </select>
-
-                <div>
-                    <button type="submit">Add</button>
-                </div>
-
-            </form> --}}
+<div class="shareWants">
+    <a href="/splash/books/add-book-wants">+</a>
+</div>
+<div class="shareGot">
+    <a href="/splash/books/add-book-got">-</a>
+</div>
