@@ -458,7 +458,7 @@ nav #menu-toggle {
 }
 
 .book-view h4 {
-  width: 200px;
+  width: 180px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -527,13 +527,16 @@ nav #menu-toggle {
 .wants-container {
   width: 100%;
   height: 100%;
-  border: 2px solid black;
-  padding: 10vh;
+  
+  padding-top: 7vh;
+  display: grid;
+  justify-content:center;
 }
-.search-Wants {
-  width: 100%;
-  height: 100px;
-  border: 4px solid green;
+.search-wants {
+  width: 340px;
+  height: 10vh;
+  text-align: center;
+  padding-top: 10px;
 }
 .searchTerm {
   width: 80%;
@@ -558,7 +561,39 @@ nav #menu-toggle {
   font-size: 20px;
 } 
 
-/*Resize the wrap to see the search bar change!*/
+.search-list {
+  background-color: #fff;
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: 1fr;
+  
+}
+.search-view {
+  border: 2px solid grey;
+  background-color: #F5F5F5;
+  border-radius: 10px;
+  justify-items: center;
+  height: 95%;
+  width: 95%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.search-view h4, .search-view h5 {
+  margin: 0;
+}
+
+.search-view h4 {
+  width: 170px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 20px;
+}
 
 .got-container {
   padding-top: 7vh;
