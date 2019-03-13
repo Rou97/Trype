@@ -34,7 +34,10 @@ const userSchema = new Schema({
     type: String
   },
   match: [{
-    OtherUserId: {
+    otherUserId: {
+      type: String
+    },
+    bookId: {
       type: String
     }
   }]

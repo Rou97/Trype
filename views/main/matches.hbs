@@ -1,9 +1,14 @@
 <h1>Matches</h1> 
 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit similique sapiente perferendis iusto saepe possimus suscipit eos voluptatibus dolorum deleniti dicta quia, obcaecati laudantium vel maiores libero debitis id aliquid.</p>
 <br>
+
+<p>{{bookMatch.title}}</p>
+<img src="{{bookMatch.image}}" alt="Book image">
 {{#each userMatch}}
 
     <p>{{this.username}}</p>
+    <p>{{this.email}}</p>
+    
 
 {{/each}}
 
