@@ -149,9 +149,10 @@ router.post('/books/add-book-wants/new', requireUser, async (req, res, next) => 
     const test = await User.find();
 
     for (let i = 0; i < test.length; i++) {
-      for (let j = 0; j < test.length; j++) {
+      console.log(test[i].books);
+      for (let j = 0; j < test[i].books.length; j++) {
+        console.log(test[i].books[j]);
         if ((book._id.toString() === test[i].books[j].item.toString()) && test[i].books[j].status.toString() === 'got') {
-          console.log(book._id);
           const updatedMatch = await User.findByIdAndUpdate(_id, { $push: { match: { otherUserId: test[i]._id, bookId: book._id } } }, { new: true });
         }
       }
@@ -170,6 +171,7 @@ router.get('/matches', requireUser, async (req, res, next) => {
   let bookMatch = [];
   for (let i = 0; i < user.match.length; i++) {
     userMatch = await User.findById(user.match[i].otherUserId);
+
     bookMatch = user.match[i].bookId;
     bookMatch = await Book.findById(bookMatch);
     console.log(userMatch);
