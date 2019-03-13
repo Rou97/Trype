@@ -523,19 +523,21 @@ nav #menu-toggle {
 
 /*-------------------------------Wants----------------------------*/
 @import url(https://fonts.googleapis.com/css?family=Open+Sans);
+
 .wants-container {
-  display: grid;
+  /* display: grid;
   grid-template-rows: 10% 90%;
-  justify-items: center;
+  justify-items: center; */
   width: 100%;
   height: 100vh;
   border: 2px solid black;
+  padding: 7vh;
 }
 .search {
   width: 100%;
+  height: 20px;
   border: 2px solid green;
 }
-
 .searchTerm {
   width: 60%;
   border: 3px solid #657FAC;
@@ -546,11 +548,9 @@ nav #menu-toggle {
   color: #9DBFAF;
   border: 2px solid blue;
 }
-
 .searchTerm:focus{
   color: #657FAC;
 }
-
 .searchButton {
   height: 36px;
   border: 1px solid #657FAC;
@@ -561,7 +561,7 @@ nav #menu-toggle {
   cursor: pointer;
   font-size: 20px;
   border: 2px solid red;
-}
+} 
 
 /*Resize the wrap to see the search bar change!*/
 
