@@ -1,24 +1,12 @@
 <div class="wants-container">
-  
-      {{!-- <form method="POST" action="/splash/books/add-book-wants/search" class="formWants"></form>
-        <div class="search">
-            <input type="text" name="title" class="searchTerm" placeholder="What book would you like? " >
-            <button type="submit" class="searchButton">
-              <i class="fa fa-search"></i>
+    <form method="POST" action="/splash/books/add-book-wants/search">
+        <div class="field" >
+          <input type="text" name="title" class="searchTerm" placeholder="What book would you like? " >
+          <button type="submit" class="searchButton">
+            <i class="fa fa-search"></i>
           </button>
         </div>
-      </form> --}}
-      <form method="POST" action="/splash/books/add-book-got/search">
-
-  <div class="field" >
-    <label>Title</label>
-    <input type="text" name="title"/>
-  </div>
-
-  <div class="field submit">
-    <button type="submit">Search</button>
-  </div>
-</form>
+    </form>
   <section class="results-wants">
     {{#each results}}
         <img src="{{this.thumbnail}}" alt="">
