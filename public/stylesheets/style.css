@@ -1,5 +1,24 @@
 /* ---- reset ---- */
-
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
 html {
   box-sizing: border-box;
 }
@@ -11,14 +30,25 @@ body {
   margin: 0;
   padding: 0;
   font-family: 'Roboto', sans-serif;
+  width: 100%;
+  height: 100%;
 }
 
+input {
+  outline: none;
+}
+button {
+  outline: none;
+}
+a {
+  text-decoration: none;
+}
 /*---------------------Layout------------------------------------*/
 
-.navegacion{
+/* .navegacion{
   height: 50px;
   width: 100%;
-  background-color: #E57067;
+  background-color: #657FAC;
   display: grid;
   grid-template-columns: 10% 70% 20%;
   align-items: center;
@@ -56,11 +86,182 @@ body {
 .navegacion button {
   color: white;
   font-size: 1em;
+} */
+/* Navbar */
+
+nav {
+  min-height: 50px;
+  display: flex;
+  position: fixed;
+  background-color: pink;
+  width: 100%;
 }
 
-.hidden {
-  margin-top:50px;
+nav #menu-toggle {
+  align-self: flex-end;
+  margin-left: 20px;
+  padding-bottom: 12px;
 }
+
+#menu {
+  top:0;
+  left: 0;
+  right: 0;
+  margin-top: 0;
+  padding-left: 0;
+}
+
+#menu a
+{
+  text-decoration: none;
+  color: #FA6C8D;
+  text-align: center;
+  transition: color 0.3s ease;
+  font-weight: bold;
+
+}
+
+#menu a:hover
+{
+  color: tomato;
+}
+
+#menu-toggle
+{
+  display: block;
+  /* position: relative; */
+  top: 60px;
+  left: 60px;
+  z-index: 1;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+#menu-toggle input
+{
+  display: block;
+  width: 60px;
+  height: 60px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  
+  cursor: pointer;
+  
+  opacity: 0;
+  z-index: 2;
+  
+  -webkit-touch-callout: none;
+}
+
+#menu-toggle span
+{
+  display: block;
+  width: 33px;
+  height: 4px;
+  margin-bottom: 5px;
+  position: relative;
+  
+  background: #cdcdcd;
+  border-radius: 3px;
+  
+  z-index: 12;
+  
+  transform-origin: 4px 0px;
+  
+  transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+              background 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+              opacity 0.55s ease;
+}
+
+#menu-toggle span:first-child
+{
+  transform-origin: 0% 0%;
+}
+
+#menu-toggle span:nth-last-child(2)
+{
+  transform-origin: 0% 100%;
+}
+
+#menu-toggle input:checked ~ span
+{
+  opacity: 1;
+  transform: rotate(45deg) translate(-2px, -1px);
+  background: #232323;
+}
+
+#menu-toggle input:checked ~ span:nth-last-child(3)
+{
+  opacity: 0;
+  transform: rotate(0deg) scale(0.2, 0.2);
+}
+
+#menu-toggle input:checked ~ span:nth-last-child(2)
+{
+  transform: rotate(-45deg) translate(0, -1px);
+}
+
+#menu
+{
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  margin-top: 0;
+  margin-left: 0;
+  
+  background: white;
+  list-style-type: none;
+  -webkit-font-smoothing: antialiased;
+  /* to stop flickering of text in safari */
+  
+  transform-origin: 0% 0%;
+  transform: translate(-100%, 0);
+  
+  transition: all 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
+}
+
+/*
+ * And let's slide it in from the left
+ */
+#menu-toggle input:checked ~ ul
+{
+  transform: translate(0, 0);
+}
+
+/* Menu */
+
+/* #div-menu{
+  text-align: center;
+  border: 1px black solid;
+  height: 85vh;
+  margin-top: 20%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+} */
+
+
+
+#menu{
+  display: grid;
+  justify-content: center;
+  align-items: center;
+}
+
+#menu li{
+  display: flex;
+  justify-content: center;
+  justify-self: center;
+  font-size: 22px;
+}
+
+#menu button{
+  font-size: 22px;
+  background: none;
+  border: none;
+}
+
 /*---------------------Index-----------------------------------*/
 .index-container {
   width: 100%;
@@ -177,17 +378,17 @@ body {
   display: grid;
   grid-template-rows: 33% 33% 33%;
 }
-.splash-container a {
-  text-decoration: none;
-  color: #e57067;
-  font-size: 1.3em;
-  font-weight: bold;
-}
+
 .section-profile {
   display: grid;
   padding-top: 5px;
-  background-color: #f9ccc9;
+  background-color: rgb(174, 196, 235);
   justify-items: center;
+  text-decoration: none;
+  color: #fff;
+  font-size: 1.5em;
+  font-weight: bold;
+
 }
 .section-profile img {
   height: 150px;
@@ -198,6 +399,10 @@ body {
   padding-top: 5px;
   background-color: #fff;
   justify-items: center;
+  text-decoration: none;
+  color: #657FAC;
+  font-size: 1.5em;
+  font-weight: bold;
 }
 .section-books img {
   height: 150px;
@@ -206,8 +411,12 @@ body {
 .section-matches {
   display: grid;
   padding-top: 5px;
-  background-color: #f9ccc9;
+  background-color: rgb(174, 196, 235);
   justify-items: center;
+  text-decoration: none;
+  color: #fff;
+  font-size: 1.5em;
+  font-weight: bold;
 }
 .section-matches img {
   height: 150px;
@@ -216,7 +425,7 @@ body {
 
 /*-----------------------Profile----------------------*/
 .profile-container {
-  background-color: #f9ccc9;
+  background-color: #f7f7f7; 
   width: 100%;
   height: 100vh;
   color: #fff;
@@ -276,18 +485,13 @@ body {
 }
 
 /*-----------------------Books----------------------*/
-.profile-container {
-  background-color: #f9ccc9;
+.books-container {
+  background-color: #f7f7f7;
   width: 100%;
-  height: 100vh;
-  color: #fff;
-  display: grid;
-  grid-template-rows: 40% 30% 30%;
-  align-items: center;
-  justify-items: center;
+  height: 100%;
 }
 .books-list {
-  background-color: #f9ccc9;
+  background-color: #fff;
   display: grid;
   align-items: center;
   justify-items: center;
@@ -298,7 +502,7 @@ body {
 .book-view {
   border: 2px solid grey;
   background-color: #F5F5F5;
-  border-radius: 10%;
+  border-radius: 10px;
   justify-items: center;
   height: 95%;
   width: 95%;
@@ -319,3 +523,63 @@ body {
   text-overflow: ellipsis;
   padding: 20px;
 }
+
+.books-img-delete {
+  height: 30px;
+  width: 30px;
+}
+
+.shareWants{
+  display:block;
+  width:60px;
+  height:60px;
+  background:green;
+  position:fixed;
+  bottom:0;
+  left:10%;
+  z-index:999;
+  text-align:center;
+  overflow:hidden;
+  line-height:65px;
+  font-size:1.5em;
+  color:#fff;
+  -moz-box-shadow: 0px 3px 9px rgba(0,0,0,.5);
+  -webkit-box-shadow: 0px 3px 9px rgba(0,0,0,.5);
+  box-shadow: 0px 3px 9px rgba(0,0,0,.5);
+  border-radius:50px;
+  -webkit-transform:translate(-50%,-50%);
+  transform:translate(-50%,-50%); 
+}
+.shareGot{
+  display:block;
+  width:60px;
+  height:60px;
+  background:red;
+  position:fixed;
+  bottom:0;
+  left:90%;
+  z-index:999;
+  text-align:center;
+  overflow:hidden;
+  line-height:65px;
+  font-size:1.5em;
+  color:#fff;
+  -moz-box-shadow: 0px 3px 9px rgba(0,0,0,.5);
+  -webkit-box-shadow: 0px 3px 9px rgba(0,0,0,.5);
+  box-shadow: 0px 3px 9px rgba(0,0,0,.5);
+  border-radius:50px;
+  -webkit-transform:translate(-50%,-50%);
+  transform:translate(-50%,-50%); 
+}
+.shareWants a {
+  font-size: 1.5em;
+  font-weight: bold;
+  color: #fff;
+}
+.shareGot a {
+  font-size: 1.5em;
+  font-weight: bold;
+  color: #fff;
+}
+
+

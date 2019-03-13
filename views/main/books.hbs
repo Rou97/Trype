@@ -7,14 +7,18 @@
                 <h5>{{this.status}}</h5>
                 <form method="POST" action="/splash/books/{{this.item._id}}/delete">
                     <div>
-                        <button type="submit">Delete book</button>
+                        <button type="submit"><img src="/images/books-delete.png" class="books-img-delete" /></button>
                     </div>
                 </form>
             </article>
         {{/each}}
     </section>
-    <a href="/splash/books/add-book-wants">Add book to WANTS</a>
-    <a href="/splash/books/add-book-got">Add book to GOT</a>
+    <div class="shareWants">
+        <a href="/splash/books/add-book-wants">+</a>
+    </div>
+    <div class="shareGot">
+        <a href="/splash/books/add-book-got">-</a>
+     </div>
 </div>
  {{!-- <form method="POST" action="/splash/books/{{this.item._id}}">
                 <select name="select">

@@ -11,21 +11,35 @@
 
 <body>
   {{#if currentUser}}
-    <nav class="navegacion">
-    <img src="/images/logo-trype.png" class="nav-index-logo">
-    <ul>
+ <nav class="nav" role="navigation">
+    <div id="menu-toggle">
+      <input type="checkbox" />
+      <span></span>
+      <span></span>
+      <span></span>
+      <ul id="menu">
       <li><a href="/splash">Home</a></li>
       <li><a href="/splash/profile">Profile</a></li>
       <li><a href="/splash/books">Books</a></li>
       <li><a href="/splash/matches">Matches</a></li>
-    </ul>
-    <form action="/auth/logout" method="POST">
-      <button type="submit">Logout</button>
-    </form>
+      <li>
+        <form action="/auth/logout" method="POST">
+          <button type="submit">Logout</button>
+        </form> 
+      </li>
+      </ul>
   </nav>
-  <section class="hidden"></section>
+ 
+  {{!-- <section class="hidden"></section> --}}
  {{/if}}
   {{{body}}}
 </body>
 
 </html>
+
+  {{!-- <nav class="navegacion">
+    <img src="/images/logo-trype.png" class="nav-index-logo">
+   
+    </ul>
+    
+  </nav> --}}
