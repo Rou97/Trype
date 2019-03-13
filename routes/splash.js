@@ -50,6 +50,7 @@ router.post('/books/:id/delete', requireUser, async (req, res, next) => {
   const user = await User.findById(_id);
   try {
     const deleteBookOnList = await User.findByIdAndUpdate(_id, { $pull: { books: { item: id } } }, { new: true });
+    // const deleteMatch = await User.findByIdAndUpdate(_id, { $pull: { match: { OtherUserId: id } } }, { new: true });
     res.redirect('/splash/books');
   } catch (error) {
     next(error);
@@ -150,7 +151,9 @@ router.post('/books/add-book-wants/new', requireUser, async (req, res, next) => 
     for (let i = 0; i < test.length; i++) {
       for (let j = 0; j < test.length; j++) {
         if ((book._id.toString() === test[i].books[j].item.toString()) && test[i].books[j].status.toString() === 'got') {
-          console.log(test[i].email);
+          console.log('book id : ', book._id); // el libro que el usuario log quiere
+          console.log('user id : ', test[i]._id); // el usuario que tiene el libro que usuario log quiere
+          const updatedMatch = await User.findByIdAndUpdate(_id, { $push: { match: { OtherUserId: test[i]._id } } }, { new: true });
         }
       }
     }

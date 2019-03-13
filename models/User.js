@@ -32,7 +32,12 @@ const userSchema = new Schema({
   },
   Image: {
     type: String
-  }
+  },
+  match: [{
+    OtherUserId: {
+      type: String
+    }
+  }]
 });
 
 const User = mongoose.model('User', userSchema);
