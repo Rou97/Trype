@@ -48,10 +48,6 @@ router.get('/books/add-book-wants', requireUser, (req, res, next) => {
   res.render('main/add-book-wants');
 });
 
-router.get('/books/add-book-got', requireUser, (req, res, next) => {
-  res.render('main/add-book-got');
-});
-
 router.post('/books/add-book-wants/search', requireUser, (req, res, next) => {
   const { title } = req.body;
   api.search(title, function (error, results) {
