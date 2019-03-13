@@ -164,39 +164,17 @@ router.post('/books/add-book-wants/new', requireUser, async (req, res, next) => 
   }
 });
 
-router.get('/matches', requireUser, (req, res, next) => {
-  res.render('/main/matches');
-});
-
-router.post('/matches', requireUser, async (req, res, next) => {
+router.get('/matches', requireUser, async (req, res, next) => {
   const { _id } = req.session.currentUser;
-
   const user = await User.findById(_id);
-  // const arr = [];
-  // for (let i = 0; i < user.books.length; i++) {
-  //   if (user.books[i].status === 'wants') {
-  //     const itemForSwap = user.books[i].item;
+  let userMatch = [];
+  for (let i = 0; i < user.match.length; i++) {
+    userMatch = await User.findById(user.match[i].OtherUserId);
+  }
 
-  //     const test = await Book.findById(itemForSwap);
+  // console.log(userMatch.username);
 
-  //     const test2 = test._id;
-
-  //     const test3 = await User.find({ 'books.item': test2 });
-
-  //     for (let j = 0; j < test3.length; j++) {
-  //       arr.push(test3[j]._id);
-  //       arr.push(test3[j].books[j].status);
-  //       console.log(arr);
-  //       console.log('                 ');
-  //     }
-
-  //     if (arr[1] !== arr[3]) {
-  //       console.log('Match!');
-  //     }
-  //   }
-  // }
-
-  res.redirect('/splash/matches');
+  res.render('main/matches', { user, userMatch });
 });
 
 module.exports = router;

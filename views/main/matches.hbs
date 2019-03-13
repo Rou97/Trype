@@ -1,8 +1,19 @@
 <h1>Matches</h1> 
+<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit similique sapiente perferendis iusto saepe possimus suscipit eos voluptatibus dolorum deleniti dicta quia, obcaecati laudantium vel maiores libero debitis id aliquid.</p>
+<br>
+{{#each userMatch}}
 
-<form method="POST" action="/splash/matches/{{user._id}}">
+    <p>{{this.username}}</p>
+
+{{/each}}
+
+
+
+
+
+{{!-- <form method="POST" action="/splash/matches/{{user._id}}">
         <div>
             <button type="submit">Search</button>
         </div>
 
-</form>
+</form> --}}
