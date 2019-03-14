@@ -521,14 +521,18 @@ nav #menu-toggle {
   font-weight: bold;
   color: #fff;
 }
-
+/*-------------------------------Book-Detail------------------------*/
+.detail-container {
+  width: 100%;
+  height: 100%;
+  padding-top: 7vh;
+}
 /*-------------------------------Wants----------------------------*/
 @import url(https://fonts.googleapis.com/css?family=Open+Sans);
 
 .wants-container {
   width: 100%;
   height: 100%;
-  
   padding-top: 7vh;
   display: grid;
   justify-content:center;

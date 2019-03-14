@@ -163,4 +163,17 @@ router.get('/matches', requireUser, async (req, res, next) => {
   res.render('main/matches', { userMatch, bookMatch });
 });
 
+// -------------------------------Route to view a details book ------------------------------//
+router.get('/books/:id', requireUser, async (req, res, next) => {
+  const { id } = req.params;
+  const { _id } = req.session.currentUser;
+  try {
+    const book = await Book.findById(id);
+    console.log(book);
+    res.render('main/detail', { book });
+  } catch (error) {
+    next(error);
+  }
+});
+
 module.exports = router;
