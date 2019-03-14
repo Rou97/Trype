@@ -6,9 +6,17 @@
     {{!-- <p>{{userMatch}}</p> --}}
 
     {{#each userMatch}}
+    
 
         <p>{{this.username}}</p>
         <p>{{this.email}}</p>
+        
+    {{/each}}
+    {{#each user.match}}
+    
+
+        <p>{{this.otherBookId}}</p>
+       
         
     {{/each}}
 </div>

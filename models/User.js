@@ -39,6 +39,9 @@ const userSchema = new Schema({
     },
     bookId: {
       type: String
+    },
+    otherBookId: {
+      type: String
     }
   }]
 });

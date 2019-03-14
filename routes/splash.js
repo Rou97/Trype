@@ -142,7 +142,7 @@ router.post('/books/add-book-wants/new', requireUser, async (req, res, next) => 
     }
 
     // match
-
+    const user = req.session.currentUser;
     const test = await User.find();
 
     for (let i = 0; i < test.length; i++) {
@@ -150,11 +150,17 @@ router.post('/books/add-book-wants/new', requireUser, async (req, res, next) => 
       for (let j = 0; j < test[i].books.length; j++) {
         console.log(test[i].books[j]);
         if ((book._id.toString() === test[i].books[j].item.toString()) && test[i].books[j].status.toString() === 'got') {
-          const updatedMatch = await User.findByIdAndUpdate(_id, { $push: { match: { otherUserId: test[i]._id, bookId: book._id } } }, { new: true });
-          req.session.currentUser = updatedMatch;
+          for (let k = 0; k < user.books.length; k++) {
+            for (let l = 0; l < test[i].books.length; l++) {
+              if ((user.books[k].item.toString() === test[i].books[l].item.toString()) && test[i].books[l].status.toString() === 'wants') {
+                const updatedMatch = await User.findByIdAndUpdate(_id, { $push: { match: { otherUserId: test[i]._id, bookId: book._id, otherBookId: user.books[k].item } } }, { new: true });
+                req.session.currentUser = updatedMatch;
 
-          const updatedMatch2 = await User.findByIdAndUpdate(_id, { $push: { match: { otherUserId: test[i]._id, bookId: book._id } } }, { new: true });
-          req.session.currentUser = updatedMatch2;
+                const updatedMatch2 = await User.findByIdAndUpdate(_id, { $push: { match: { otherUserId: test[i]._id, bookId: book._id, otherBookId: user.books[k].item } } }, { new: true });
+                req.session.currentUser = updatedMatch2;
+              }
+            }
+          }
         }
       }
     }
@@ -176,7 +182,7 @@ router.get('/matches', requireUser, async (req, res, next) => {
     bookMatch = await Book.findById(bookMatch);
   }
 
-  res.render('main/matches', { userMatch, bookMatch });
+  res.render('main/matches', { userMatch, bookMatch, user });
 });
 
 // -------------------------------Route to view a details book ------------------------------//
@@ -185,7 +191,7 @@ router.get('/books/:id', requireUser, async (req, res, next) => {
   const { _id } = req.session.currentUser;
   try {
     const book = await Book.findById(id);
-    console.log(book);
+    console.log(book.author[0]);
     res.render('main/detail', { book });
   } catch (error) {
     next(error);
