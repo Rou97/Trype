@@ -17,7 +17,12 @@
             </div>
             <div class="profile-location">
                 <p class="profile-field">Location</p>
-                <input type="text" name="location" value="{{user.location}}" class="profile-field-data"/>
+                <select name="location" class="profile-field-data">
+                    <option value="Barcelona">Barcelona</option> 
+                    <option value="Madrid">Madrid</option>
+                    <option value="Paris" selected>Paris</option>
+                </select>
+                {{!-- <input type="text" name="location" value="{{user.location}}" class="profile-field-data"/> --}}
             </div>
         </section>
 
