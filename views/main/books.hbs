@@ -6,19 +6,8 @@
         {{#each user.books}}
         <article class="book-view">
             {{!-- <h4>{{this.item.title}}</h4> --}}
-            <form method="GET" action="/splash/books/{{this.item.id}}">
-                <input type="text" name="title" value="{{this.title}}" hidden/>
-                <input type="text" name="image" value="{{this.thumbnail}}" hidden/>
-                <input type="text" name="ISBN" value="{{this.industryIdentifiers.1.identifier}}"hidden/>
-                <input type="text" name="author" value="{{this.authors}}" hidden/>
-                <button type="submit"><img src="{{this.item.image}}" alt="Book image"></button>
-            </form>
+            <a href="/splash/books/{{this.item.id}}"><img src="{{this.item.image}}" alt="Book image"></a>
             <h5>{{this.status}}</h5>
-            {{!-- <form method="POST" action="/splash/books/{{this.item._id}}/delete">
-                <div>
-                    <button type="submit"><img src="/images/books-delete.png" class="books-img-delete" /></button>
-                </div>
-            </form> --}}
         </article>
         {{/each}}
     </section>

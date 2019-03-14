@@ -98,7 +98,7 @@ nav #menu-toggle {
 {
   display: block;
   width: 60px;
-  height: 60px;
+  height: 40px;
   position: absolute;
   top: 0;
   left: 0;
@@ -106,6 +106,8 @@ nav #menu-toggle {
   opacity: 0;
   z-index: 2;
   -webkit-touch-callout: none;
+  margin-top: 5px;
+  margin-left: 5px;
 }
 
 #menu-toggle span
@@ -520,12 +522,32 @@ nav #menu-toggle {
 }
 /*-------------------------------Book-Detail------------------------*/
 .detail-container {
+  border: 2px solid black;
   width: 100%;
   height: 100%;
-  padding-top: 7vh;
+  padding-top: 10vh;
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: 20% 20% 20% 40%;
+  justify-items: center;
 }
+.detail-img-book {
+  grid-column: 1 / 2;
+  grid-row: 1 / 5;
+  width: 170px;
+  height: 230px;
+}
+
+
+
+
+
+
+
+
+
 /*-------------------------------Wants----------------------------*/
-@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+
 
 .wants-container {
   width: 100%;
@@ -534,20 +556,27 @@ nav #menu-toggle {
   display: grid;
   justify-content:center;
 }
-.search-wants {
+ .search-wants {
   width: 340px;
   height: 10vh;
   text-align: center;
   padding-top: 10px;
+} 
+.form-search {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  display: flex;
 }
 .searchTerm {
-  width: 80%;
+  width: 100%;
+  margin-right: 2px;
   border: 3px solid #657FAC;
-  padding: 1px 5px;
   height: 35px;
   border-radius: 5px;
   outline: none;
   color: #9DBFAF;
+  padding: 10px;
 }
 .searchTerm:focus{
   color: #657FAC;
@@ -561,6 +590,7 @@ nav #menu-toggle {
   border-radius: 5px;
   cursor: pointer;
   font-size: 20px;
+  
 } 
 
 .search-list {
@@ -581,7 +611,7 @@ nav #menu-toggle {
   width: 95%;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content:space-between;
   align-items: center;
 }
 
@@ -596,10 +626,22 @@ nav #menu-toggle {
   text-overflow: ellipsis;
   padding: 20px;
 }
+.search-view img {
+  height: 180px;
+  width: 90%;
+}
 .search-view button {
+  box-shadow: 1px 1px 15px rgba(0, 0, 0, 0.1);
   background-color: #657FAC;
-  border-radius: 10px;
+  border-radius: 5px;
   border: 2px solid #657FAC;
+  width: 55px;
+  height: 20px;
+  color: white;
+  margin: 5px;
+}
+.btn-igot {
+ 
 }
 .got-container {
   padding-top: 7vh;
@@ -614,7 +656,15 @@ nav #menu-toggle {
 /*----------------------------------Error 404---------------------*/
 .error-404 {
   position: absolute;
-  top: 50%;
-  right: center;;
+  top: 40%;
+  margin-left: 20px;
+  right: center;
+  font-size: 3em;
+}
+
+.error-500 {
+  position: absolute;
+  top: 40%;
+  margin-left: 100px;
   font-size: 3em;
 }

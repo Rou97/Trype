@@ -1,6 +1,6 @@
 <div class="wants-container">
   <section class="search-wants">
-    <form method="POST" action="/splash/books/add-book-wants/search">
+    <form method="POST" action="/splash/books/add-book-wants/search" class="form-search">
         <input type="text" name="title" class="searchTerm" placeholder="What book would you like? " >
         <button type="submit" class="searchButton">
           <i class="fa fa-search"></i>
@@ -15,7 +15,7 @@
         <img src="{{this.thumbnail}}" alt="">
         {{!-- <p>{{this.industryIdentifiers.1.identifier}}</p>
         <p>{{this.authors}}</p> --}}
-        <form method="POST" action="/splash/books/add-book-wants/new">
+        <form method="POST" action="/splash/books/add-book-wants/new" class="btn-iwant">
             <input type="text" name="title" value="{{this.title}}" hidden/>
             <input type="text" name="image" value="{{this.thumbnail}}" hidden/>
             <input type="text" name="ISBN" value="{{this.industryIdentifiers.1.identifier}}"hidden/>
@@ -24,13 +24,13 @@
                 <button type="submit">I want</button>
             </div>
         </form>
-        <form method="POST" action="/splash/books/add-book-got/new">
+        <form method="POST" action="/splash/books/add-book-got/new" class="btn-igot">
             <input type="text" name="title" value="{{this.title}}" hidden/>
             <input type="text" name="image" value="{{this.thumbnail}}" hidden/>
             <input type="text" name="ISBN" value="{{this.industryIdentifiers.1.identifier}}"hidden/>
             <input type="text" name="authors" value="{{this.authors}}" hidden/>
             <div>
-                <button type="submit">I have</button>
+                <button type="submit">I got it</button>
             </div>
         </form>
       </article>
