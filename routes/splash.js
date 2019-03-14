@@ -185,7 +185,7 @@ router.post('/books/add-book-wants/new', requireUser, async (req, res, next) => 
 });
 
 router.get('/matches', requireUser, async (req, res, next) => {
-  const user = req.session.currentUser;
+  const { user, _id } = req.session.currentUser;
 
   let userMatch = [];
   let bookMatch = [];
@@ -200,6 +200,10 @@ router.get('/matches', requireUser, async (req, res, next) => {
       bookId: await Book.findById(user.match[i].otherBookId)
     });
   }
+
+  const updatedUser = await User.findByIdAndUpdate(user._id, { _id: _id }, { new: true });
+  req.session.currentUser = updatedUser;
+
   req.session.currentUser = user;
   console.log(testArray);
   res.render('main/matches', { user, testArray });
