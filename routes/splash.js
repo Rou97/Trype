@@ -21,6 +21,21 @@ router.get('/profile', requireUser, async (req, res, next) => {
   }
 });
 
+router.get('/profile-edit-view', requireUser, (req, res, next) => {
+  const user = req.session.currentUser;
+  res.render('main/profile-edit', { user });
+});
+
+router.post('/profile-edit-action', requireUser, async (req, res, next) => {
+  console.log('entra');
+  const { _id } = req.session.currentUser;
+  const { username, email, location } = req.body;
+  const updatedUser = await User.findByIdAndUpdate(_id, { username: username, email: email, location: location }, { new: true });
+  req.session.currentUser = updatedUser;
+  console.log(updatedUser);
+  res.redirect('/splash/profile');
+});
+
 router.get('/books', requireUser, async (req, res, next) => {
   const { _id } = req.session.currentUser;
   try {
