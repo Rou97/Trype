@@ -5,7 +5,14 @@
     <input type="text" name="username" placeholder="Username" class="signup-field"/>
     <input type="password" name="password" placeholder="Password" class="signup-field"/>
     <input type="email" name="email" placeholder="E-Mail" class="signup-field"/>
-    <input type="text" name="location" placeholder="Location" class="signup-field"/>
+    {{!-- <input list="Location" placeholder="Location" class="signup-field"/> --}}
+
+      <select name="location" class="signup-field">
+        <option value="Barcelona">Barcelona</option> 
+        <option value="Madrid" selected>Madrid</option>
+        <option value="Paris">Paris</option>
+      </select>
+
     <button type="submit" class="signup-button">GO!</button>
   </form>
 </div>
