@@ -166,13 +166,12 @@ nav #menu-toggle {
   height: 100%;
   margin-top: 0;
   margin-left: 0;
-  
   background: white;
   list-style-type: none;
   -webkit-font-smoothing: antialiased;
   transform-origin: 0% 0%;
   transform: translate(-100%, 0);
-  
+
   transition: all 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
 }
 
@@ -235,6 +234,7 @@ nav #menu-toggle {
   font-size: 1.5em;
   color: #fff;
   grid-row: 3 / 4;
+  box-shadow: 1px 5px 25px rgba(0, 0, 0, 0.1);
 }
 
 .index-btn-login {
@@ -249,6 +249,7 @@ nav #menu-toggle {
   font-size: 1.5em;
   color: #fff;
   grid-row: 4 / 5;
+  box-shadow: 1px 5px 25px rgba(0, 0, 0, 0.1);
 }
 
 /*------------------------signup-----------------------------*/
@@ -265,16 +266,19 @@ nav #menu-toggle {
 
 .signup-container h1 {
   grid-row: 1 / 2;
-  font-size: 2em;
+  font-size: 1.6em;
+  letter-spacing: 2px;
   align-self: end;
-  font-family: lora;
+  font-weight: bold;
+  
 }
 
 .signup-container img {
   grid-row: 2 / 3;
+  margin-top: 30px;
   align-self: end;
-  width: 20vh;
-  height: 20vh;
+  width: 15vh;
+  height: 15vh;
   align-self: start;
 }
 
@@ -286,17 +290,18 @@ nav #menu-toggle {
 .signup-field {
   border: 2px solid #fff;
   border-radius: 10vh;
-  background-color: #839BC4;
-  color: #fff;
+  background-color: #fff; 
+  color: #839BC4;
   text-align: center;
   align-self: start;
   margin-bottom: 20px;
   width: 45vh;
   height: 7vh;
-  font-size: 1.5em;
+  font-size: 1.2em;
 }
 .signup-field::placeholder {
-  color: #fff;
+  color: rgb(157, 179, 218);
+  font-weight: 200;
 }
 .signup-button {
   border: 1px solid #657FAC;
@@ -309,6 +314,7 @@ nav #menu-toggle {
   width: 45vh;
   height: 7vh;
   font-size: 1.5em;
+  box-shadow: 1px 5px 25px rgba(0, 0, 0, 0.1);
 }
 /*------------------------------Splash---------------------------*/
 
@@ -428,10 +434,20 @@ nav #menu-toggle {
 
 /*-----------------------Books----------------------*/
 .books-container {
-  background-color: #f7f7f7;
+  background-color: #fff;
   width: 100%;
   height: 100%;
   padding-top: 7vh;
+  text-align: center;
+}
+
+.books-container h1 {
+  padding-top: 20px;
+  padding-bottom: 10px;
+  font-size: 1.2em;
+  font-weight: bold;
+  letter-spacing: 1px;
+  color: #839BC4;
 }
 .books-list {
   background-color: #fff;
@@ -443,8 +459,9 @@ nav #menu-toggle {
   text-align: center;
 }
 .book-view {
-  border: 2px solid grey;
-  background-color: #F5F5F5;
+  /* border: 2px solid grey; */
+  box-shadow: 1px 1px 15px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
   border-radius: 10px;
   justify-items: center;
   height: 95%;
@@ -457,6 +474,13 @@ nav #menu-toggle {
 
 .book-view h4, .book-view h5 {
   margin: 0;
+  padding-bottom: 20px;
+  color: #839BC4;
+  font-size: 1.2em;
+  margin-top: 5px;
+}
+.book-view img {
+  padding-top: 20px;
 }
 
 .book-view h4 {
@@ -548,8 +572,8 @@ nav #menu-toggle {
   
 }
 .search-view {
-  border: 2px solid grey;
-  background-color: #F5F5F5;
+  box-shadow: 1px 1px 15px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
   border-radius: 10px;
   justify-items: center;
   height: 95%;
@@ -572,7 +596,9 @@ nav #menu-toggle {
   padding: 20px;
 }
 .search-view button {
-  
+  background-color: #657FAC;
+  border-radius: 10px;
+  border: 2px solid #657FAC;
 }
 .got-container {
   padding-top: 7vh;
@@ -582,4 +608,12 @@ nav #menu-toggle {
 /*---------------------------------matches--------------------*/
 .matches-container {
   padding-top: 7vh;
+}
+
+/*----------------------------------Error 404---------------------*/
+.error-404 {
+  position: absolute;
+  top: 50%;
+  right: center;;
+  font-size: 3em;
 }

@@ -1,15 +1,24 @@
 <div class="books-container">
+    <div class="books-title">
+        <h1>YOUR BOOK LIST</h1>
+    </div>
     <section class="books-list">
         {{#each user.books}}
         <article class="book-view">
-            <h4>{{this.item.title}}</h4>
-            <img src="{{this.item.image}}" alt="Book image">
+            {{!-- <h4>{{this.item.title}}</h4> --}}
+            <form method="POST" action="/splash/books/{{this.item.id}}">
+                <input type="text" name="title" value="{{this.title}}" hidden/>
+                <input type="text" name="image" value="{{this.thumbnail}}" hidden/>
+                <input type="text" name="ISBN" value="{{this.industryIdentifiers.1.identifier}}"hidden/>
+                <input type="text" name="authors" value="{{this.authors}}" hidden/>
+                <button type="submit"><img src="{{this.item.image}}" alt="Book image"></button>
+            </form>
             <h5>{{this.status}}</h5>
-            <form method="POST" action="/splash/books/{{this.item._id}}/delete">
+            {{!-- <form method="POST" action="/splash/books/{{this.item._id}}/delete">
                 <div>
                     <button type="submit"><img src="/images/books-delete.png" class="books-img-delete" /></button>
                 </div>
-            </form>
+            </form> --}}
         </article>
         {{/each}}
     </section>
@@ -17,6 +26,4 @@
 <div class="shareWants">
     <a href="/splash/books/add-book-wants">+</a>
 </div>
-{{!-- <div class="shareGot">
-    <a href="/splash/books/add-book-got">-</a>
-</div> --}}
+

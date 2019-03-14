@@ -39,7 +39,7 @@ router.post('/signup', requireAnon, requireFields, async (req, res, next) => {
     // Guardamos el usuario en la session
     req.session.currentUser = createdUser;
     // Redirigimos para la homepage
-    res.redirect('/splash');
+    res.redirect('/splash/books');
   } catch (error) {
     next(error);
   }
@@ -64,7 +64,7 @@ router.post('/login', requireAnon, requireFields, async (req, res, next) => {
       // guardar la session
       req.session.currentUser = user;
       // redirigir
-      res.redirect('/splash');
+      res.redirect('/splash/books');
     } else {
       res.redirect('/auth/login');
     }
