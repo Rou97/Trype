@@ -204,7 +204,6 @@ router.get('/matches', requireUser, async (req, res, next) => {
   const updatedUser = await User.findByIdAndUpdate(user._id, { _id: _id }, { new: true });
   req.session.currentUser = updatedUser;
 
-  req.session.currentUser = user;
   console.log(testArray);
   res.render('main/matches', { user, testArray });
 });
