@@ -102,12 +102,9 @@ nav #menu-toggle {
   position: absolute;
   top: 0;
   left: 0;
-  
   cursor: pointer;
-  
   opacity: 0;
   z-index: 2;
-  
   -webkit-touch-callout: none;
 }
 
@@ -171,7 +168,6 @@ nav #menu-toggle {
   -webkit-font-smoothing: antialiased;
   transform-origin: 0% 0%;
   transform: translate(-100%, 0);
-
   transition: all 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
 }
 
@@ -181,9 +177,9 @@ nav #menu-toggle {
 }
 
 #menu{
-  display: grid;
+  display: flex;
   justify-content: center;
-  align-items: center;
+  flex-direction: column;
 }
 
 #menu li{
@@ -191,6 +187,7 @@ nav #menu-toggle {
   justify-content: center;
   justify-self: center;
   font-size: 22px;
+  margin: 25px;
 }
 
 #menu button{

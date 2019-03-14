@@ -18,9 +18,7 @@
   <h1>{{book.title}}</h1>
   <img src="{{book.image}}" alt="Book image">
   <h5>{{book.ISBN}}</h5>
-  {{#each book.author}}
-    <h5>{{this.1}}</h5>
-  {{/each}}
+  {{book.author}}
 {{!-- <p>Special ingredient (if any): {{tortilla.special}}</p>
 <p>Size: {{tortilla.size}}</p>
 <p>Created by: {{tortilla.creator.username}}</p>
