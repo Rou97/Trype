@@ -13,10 +13,19 @@ const bookSchema = new Schema({
     type: String,
     required: true
   },
+  subtitle: {
+    type: String
+  },
   authors: {
     type: Array
   },
   image: {
+    type: String
+  },
+  description: {
+    type: String
+  },
+  language: {
     type: String
   }
 });
