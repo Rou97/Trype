@@ -175,14 +175,17 @@ router.get('/matches', requireUser, async (req, res, next) => {
   const user = req.session.currentUser;
   let userMatch = [];
   let bookMatch = [];
+  let bookId = [];
   for (let i = 0; i < user.match.length; i++) {
     userMatch = await User.findById(user.match[i].otherUserId);
 
     bookMatch = user.match[i].bookId;
     bookMatch = await Book.findById(bookMatch);
+    bookId = user.match[i].otherBookId;
   }
-
-  res.render('main/matches', { userMatch, bookMatch, user });
+  const imgBook = await Book.findById(bookId);
+  console.log(imgBook);
+  res.render('main/matches', { userMatch, bookMatch, user, imgBook });
 });
 
 // -------------------------------Route to view a details book ------------------------------//
