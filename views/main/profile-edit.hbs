@@ -1,0 +1,30 @@
+<div class="profile-container">
+    <section class="profile-image">
+        <img src="/images/default-profile.png" alt="Imagen Usuario">
+    </section>
+    <section class="profile-info">
+        <div class="profile-username">
+            <p class="profile-field">Username</p>
+            <p class="profile-field-data">{{user.username}}</p>
+        </div>
+        <div class="profile-email">
+            <p class="profile-field">E-Mail</p>
+            <p class="profile-field-data">{{user.email}}</p>
+        </div>
+        <div class="profile-location">
+            <p class="profile-field">Location</p>
+            <p class="profile-field-data">{{user.location}}</p>
+        </div>
+    </section>
+    <section class="profile-edit">
+        <img src="/images/profile-edit.png" alt="Image edit">
+    </section>
+</div>
+
+<form method="POST" action="/splash/profile-edit">
+    <input type="text" name="username" placeholder="Username" class="signup-field"/>
+    <input type="password" name="password" placeholder="Password" class="signup-field"/>
+    <input type="email" name="email" placeholder="E-Mail" class="signup-field"/>
+    <input type="text" name="location" placeholder="Location" class="signup-field"/>
+    <button type="submit" class="signup-button">GO!</button>
+  </form>

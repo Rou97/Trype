@@ -3,21 +3,13 @@
 
     <p>{{bookMatch.title}}</p>
     <img src="{{bookMatch.image}}" alt="Book image">
+    {{!-- <p>{{userMatch}}</p> --}}
 
     {{#each userMatch}}
-        
+
         <p>{{this.username}}</p>
         <p>{{this.email}}</p>
         
     {{/each}}
 </div>
 
-
-
-
-{{!-- <form method="POST" action="/splash/matches/{{user._id}}">
-        <div>
-            <button type="submit">Search</button>
-        </div>
-
-</form> --}}

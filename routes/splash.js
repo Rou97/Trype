@@ -123,11 +123,10 @@ router.post('/books/add-book-wants/new', requireUser, async (req, res, next) => 
 
     if (!isInFavorites) {
       const updatedUser = await User.findByIdAndUpdate(_id, { $push: { books: { item: book._id, status: 'wants' } } }, { new: true });
-      req.session.currentUser = updatedUser; // duda
+      req.session.currentUser = updatedUser;
     }
 
     // match
-    // const user = req.session.currentUser;
 
     const test = await User.find();
 
@@ -137,7 +136,10 @@ router.post('/books/add-book-wants/new', requireUser, async (req, res, next) => 
         console.log(test[i].books[j]);
         if ((book._id.toString() === test[i].books[j].item.toString()) && test[i].books[j].status.toString() === 'got') {
           const updatedMatch = await User.findByIdAndUpdate(_id, { $push: { match: { otherUserId: test[i]._id, bookId: book._id } } }, { new: true });
-          req.session.currentUser = updatedMatch; // duda
+          req.session.currentUser = updatedMatch;
+
+          const updatedMatch2 = await User.findByIdAndUpdate(_id, { $push: { match: { otherUserId: test[i]._id, bookId: book._id } } }, { new: true });
+          req.session.currentUser = updatedMatch2;
         }
       }
     }
@@ -149,7 +151,6 @@ router.post('/books/add-book-wants/new', requireUser, async (req, res, next) => 
 });
 
 router.get('/matches', requireUser, async (req, res, next) => {
-  // const { _id } = req.session.currentUser;
   const user = req.session.currentUser;
   let userMatch = [];
   let bookMatch = [];
