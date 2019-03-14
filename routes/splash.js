@@ -178,6 +178,7 @@ router.post('/books/add-book-wants/new', requireUser, async (req, res, next) => 
         }
       }
     }
+    res.redirect('/splash/books');
   } catch (error) {
     next(error);
   }
