@@ -2,7 +2,7 @@
     <h1>Matches</h1> 
 
 
-    {{#each bookMatch}}
+    {{!-- {{#each bookMatch}}
         <p>{{this.title}}</p>
         <img src="{{this.image}}" alt="Book image">
     {{/each}}
@@ -10,16 +10,19 @@
     {{#each bookId}}
         <p>{{this.title}}</p>
         <img src="{{this.image}}" alt="">
-    {{/each}}
+    {{/each}} --}}
 
     {{!-- {{#each user.match}}
-        <p>{{this.other}}</p>
-        <p>{{this.email}}</p>
+        <p>{{this.otherUserId}}</p>
+        <p>{{this.bookId}}</p>
+        <p>{{this.otherBookId}}</p>
     {{/each}} --}}
 
     {{#each userMatch}}
-        <p>{{this.username}}</p>
-        <p>{{this.email}}</p>
+    <ul>
+        <li>{{this.username}}</li>
+        <li>{{this.email}}</li>
+    </ul>
     {{/each}}
     
 </div>

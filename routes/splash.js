@@ -67,6 +67,7 @@ router.post('/books/add-book-wants/search', requireUser, (req, res, next) => {
   const { title } = req.body;
   api.search(title, function (error, results) {
     if (!error) {
+      console.log(results);
       res.render('main/add-book-wants', { results });
     } else {
     }
@@ -84,11 +85,11 @@ router.post('/books/add-book-got/search', requireUser, (req, res, next) => {
 });
 
 router.post('/books/add-book-got/new', requireUser, async (req, res, next) => {
-  const { title, author, ISBN, image } = req.body;
+  const { title, authors, ISBN, image } = req.body;
   const newBook = {
     ISBN,
     title,
-    author,
+    authors,
     image
   };
   try {
