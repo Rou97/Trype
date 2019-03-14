@@ -1,23 +1,26 @@
 <div class="matches-container"></div>
     <h1>Matches</h1> 
 
-    <p>{{bookMatch.title}}</p>
-    <img src="{{bookMatch.image}}" alt="Book image">
-    <img src="{{imgBook.image}}" alt="">
+
+    {{#each bookMatch}}
+        <p>{{this.title}}</p>
+        <img src="{{this.image}}" alt="Book image">
+    {{/each}}
+
+    {{#each bookId}}
+        <p>{{this.title}}</p>
+        <img src="{{this.image}}" alt="">
+    {{/each}}
+
+    {{!-- {{#each user.match}}
+        <p>{{this.other}}</p>
+        <p>{{this.email}}</p>
+    {{/each}} --}}
 
     {{#each userMatch}}
-    
-
         <p>{{this.username}}</p>
         <p>{{this.email}}</p>
-        
     {{/each}}
-    {{#each user.match}}
     
-
-        <p>{{this.otherBookId}}</p>
-       
-        
-    {{/each}}
 </div>
 

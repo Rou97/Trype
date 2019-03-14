@@ -84,11 +84,11 @@ router.post('/books/add-book-got/search', requireUser, (req, res, next) => {
 });
 
 router.post('/books/add-book-got/new', requireUser, async (req, res, next) => {
-  const { title, authors, ISBN, image } = req.body;
+  const { title, author, ISBN, image } = req.body;
   const newBook = {
     ISBN,
     title,
-    authors,
+    author,
     image
   };
   try {
@@ -146,17 +146,38 @@ router.post('/books/add-book-wants/new', requireUser, async (req, res, next) => 
     const test = await User.find();
 
     for (let i = 0; i < test.length; i++) {
-      console.log(test[i].books);
       for (let j = 0; j < test[i].books.length; j++) {
-        console.log(test[i].books[j]);
         if ((book._id.toString() === test[i].books[j].item.toString()) && test[i].books[j].status.toString() === 'got') {
           for (let k = 0; k < user.books.length; k++) {
             for (let l = 0; l < test[i].books.length; l++) {
               if ((user.books[k].item.toString() === test[i].books[l].item.toString()) && test[i].books[l].status.toString() === 'wants') {
-                const updatedMatch = await User.findByIdAndUpdate(_id, { $push: { match: { otherUserId: test[i]._id, bookId: book._id, otherBookId: user.books[k].item } } }, { new: true });
+                for (let m = 0; m <= user.match.length; m++) {
+                  console.log('prueba', user.match[0]);
 
-                const updatedMatch2 = await User.findByIdAndUpdate(test[i]._id, { $push: { match: { otherUserId: user._id, bookId: user.books[k].item, otherBookId: book._id } } }, { new: true });
-                req.session.currentUser = updatedMatch;
+                  if (user.match[0] === undefined) {
+                    console.log('Entra en el primer if');
+                    const updatedMatch = await User.findByIdAndUpdate(_id, { $push: { match: { otherUserId: test[i]._id, bookId: book._id, otherBookId: user.books[k].item } } }, { new: true });
+                    const updatedMatch2 = await User.findByIdAndUpdate(test[i]._id, { $push: { match: { otherUserId: user._id, bookId: user.books[k].item, otherBookId: book._id } } }, { new: true });
+                    req.session.currentUser = updatedMatch;
+                    res.redirect('/splash/books');
+                  }
+
+                  // console.log('      *******************************************************      ');
+                  // console.log(user.match[m].bookId);
+                  // console.log(book._id);
+                  // console.log('      *******************************************************      ');
+
+                  if (user.match[m].bookId !== book._id) {
+                    console.log('Entra en el segundo if');
+                    const updatedMatch = await User.findByIdAndUpdate(_id, { $push: { match: { otherUserId: test[i]._id, bookId: book._id, otherBookId: user.books[k].item } } }, { new: true });
+                    const updatedMatch2 = await User.findByIdAndUpdate(test[i]._id, { $push: { match: { otherUserId: user._id, bookId: user.books[k].item, otherBookId: book._id } } }, { new: true });
+                    req.session.currentUser = updatedMatch;
+                    res.redirect('/splash/books');
+                  }
+                }
+                // const updatedMatch = await User.findByIdAndUpdate(_id, { $push: { match: { otherUserId: test[i]._id, bookId: book._id, otherBookId: user.books[k].item } } }, { new: true });
+                // const updatedMatch2 = await User.findByIdAndUpdate(test[i]._id, { $push: { match: { otherUserId: user._id, bookId: user.books[k].item, otherBookId: book._id } } }, { new: true });
+                // req.session.currentUser = updatedMatch;
               }
             }
           }
@@ -164,7 +185,7 @@ router.post('/books/add-book-wants/new', requireUser, async (req, res, next) => 
       }
     }
 
-    res.redirect('/splash/books');
+    // res.redirect('/splash/books');
   } catch (error) {
     next(error);
   }
@@ -176,15 +197,14 @@ router.get('/matches', requireUser, async (req, res, next) => {
   let bookMatch = [];
   let bookId = [];
   for (let i = 0; i < user.match.length; i++) {
-    userMatch = await User.findById(user.match[i].otherUserId);
-
-    bookMatch = user.match[i].bookId;
-    bookMatch = await Book.findById(bookMatch);
-    bookId = user.match[i].otherBookId;
+    userMatch.push(await User.findById(user.match[i].otherUserId));
+    bookMatch.push(await Book.findById(user.match[i].bookId));
+    bookId.push(await Book.findById(user.match[i].otherBookId));
   }
-  const imgBook = await Book.findById(bookId);
-  console.log(imgBook);
-  res.render('main/matches', { userMatch, bookMatch, user, imgBook });
+  // console.log(userMatch);
+  // console.log(bookMatch);
+  // console.log(bookId);
+  res.render('main/matches', { user, userMatch, bookMatch, bookId });
 });
 
 // -------------------------------Route to view a details book ------------------------------//
@@ -193,7 +213,7 @@ router.get('/books/:id', requireUser, async (req, res, next) => {
   // const { _id } = req.session.currentUser;
   try {
     const book = await Book.findById(id);
-    console.log(book.author[0]);
+    // console.log(book.author[0]);
     res.render('main/detail', { book });
   } catch (error) {
     next(error);
