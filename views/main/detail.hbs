@@ -5,29 +5,30 @@
   <img src="{{book.image}}" alt="Book image" class="detail-img-book">
    <div class="detail-info">
      <div>
-        <h2><span>Subtitle:</span> {{book.subtitle}}</h2>
+        <p><span>Subtitle:</span> {{book.subtitle}}</p>
     </div>
      <div>
-        <h5><span>ISBN:</span> {{book.ISBN}}</h5>
+        <hp><span>ISBN:</span> {{book.ISBN}}</hp>
       </div>
       <div>
         {{#each book.authors}}
-          <ul>
-            <li><span>Author:</span> {{this}}</li>
-          </ul>
+            <p><span>Author:</span> {{this}}</p>
         {{/each}}
       </div>
       <div>
-        <h5><span>Language:</span> {{book.language}}</h5>
+        <p><span>Language:</span> {{book.language}}</p>
       </div>
    </div>
-  <form method="POST" action="/splash/books/{{book._id}}/delete">
-      <div>
-        <button type="submit"><img src="/images/books-delete.png" class="books-img-delete" /></button>
-      </div>
-  </form> 
+  
   <div class="detail-description">
-        <h5><span>Description:</span> {{book.description}}</h5>
+        <h5>Description</h5>
+        <p>{{book.description}}</p>
+  </div>
+  <div class="detail-delete-book">
+  <form method="POST" action="/splash/books/{{book._id}}/delete" >
+    <button type="submit">DELETE</button>
+  </form> 
   </div>
 </div>
+
  
