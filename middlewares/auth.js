@@ -1,7 +1,7 @@
 module.exports = {
   requireAnon (req, res, next) {
     if (req.session.currentUser) {
-      res.redirect('/');
+      res.redirect('splash/books');
       return;
     }
     next();
