@@ -1,16 +1,31 @@
 
 <div class="detail-container">
-  <img src="{{book.image}}" alt="Book image" class="detail-img-book">
   <h1>{{book.title}}</h1>
-  <h5>{{book.ISBN}}</h5>
-  {{#each book.authors}}
-    <ul>
-      <li>{{this}}</li>
-    </ul>
-  {{/each}}
+ 
+  <img src="{{book.image}}" alt="Book image" class="detail-img-book">
+   <div class="detail-info">
+     <div>
+        <h2>Subtitle: {{book.subtitle}}</h2>
+    </div>
+     <div>
+        <h5>ISBN: {{book.ISBN}}</h5>
+      </div>
+      <div>
+        {{#each book.authors}}
+          <ul>
+            <li>Author: {{this}}</li>
+          </ul>
+        {{/each}}
+      </div>
+     
+   </div>
   <form method="POST" action="/splash/books/{{book._id}}/delete">
       <div>
         <button type="submit"><img src="/images/books-delete.png" class="books-img-delete" /></button>
       </div>
   </form> 
+  <div class="detail-description">
+        <h5>Description: {{book.description}}</h5>
 </div>
+</div>
+ 
