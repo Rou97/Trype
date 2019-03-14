@@ -154,10 +154,9 @@ router.post('/books/add-book-wants/new', requireUser, async (req, res, next) => 
             for (let l = 0; l < test[i].books.length; l++) {
               if ((user.books[k].item.toString() === test[i].books[l].item.toString()) && test[i].books[l].status.toString() === 'wants') {
                 const updatedMatch = await User.findByIdAndUpdate(_id, { $push: { match: { otherUserId: test[i]._id, bookId: book._id, otherBookId: user.books[k].item } } }, { new: true });
-                req.session.currentUser = updatedMatch;
 
-                const updatedMatch2 = await User.findByIdAndUpdate(_id, { $push: { match: { otherUserId: test[i]._id, bookId: book._id, otherBookId: user.books[k].item } } }, { new: true });
-                req.session.currentUser = updatedMatch2;
+                const updatedMatch2 = await User.findByIdAndUpdate(test[i]._id, { $push: { match: { otherUserId: user._id, bookId: user.books[k].item, otherBookId: book._id } } }, { new: true });
+                req.session.currentUser = updatedMatch;
               }
             }
           }
@@ -191,7 +190,7 @@ router.get('/matches', requireUser, async (req, res, next) => {
 // -------------------------------Route to view a details book ------------------------------//
 router.get('/books/:id', requireUser, async (req, res, next) => {
   const { id } = req.params;
-  const { _id } = req.session.currentUser;
+  // const { _id } = req.session.currentUser;
   try {
     const book = await Book.findById(id);
     console.log(book.author[0]);
