@@ -5,19 +5,21 @@
   <img src="{{book.image}}" alt="Book image" class="detail-img-book">
    <div class="detail-info">
      <div>
-        <h2>Subtitle: {{book.subtitle}}</h2>
+        <h2><span>Subtitle:</span> {{book.subtitle}}</h2>
     </div>
      <div>
-        <h5>ISBN: {{book.ISBN}}</h5>
+        <h5><span>ISBN:</span> {{book.ISBN}}</h5>
       </div>
       <div>
         {{#each book.authors}}
           <ul>
-            <li>Author: {{this}}</li>
+            <li><span>Author:</span> {{this}}</li>
           </ul>
         {{/each}}
       </div>
-     
+      <div>
+        <h5><span>Language:</span> {{book.language}}</h5>
+      </div>
    </div>
   <form method="POST" action="/splash/books/{{book._id}}/delete">
       <div>
@@ -25,7 +27,7 @@
       </div>
   </form> 
   <div class="detail-description">
-        <h5>Description: {{book.description}}</h5>
-</div>
+        <h5><span>Description:</span> {{book.description}}</h5>
+  </div>
 </div>
  

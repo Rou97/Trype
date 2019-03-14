@@ -524,7 +524,6 @@ select {
 }
 /*-------------------------------Book-Detail------------------------*/
 .detail-container {
-  border: 4px solid green;
   width: 100%;
   height: 100vh;
   padding-top: 10vh;
@@ -548,6 +547,10 @@ select {
   justify-self: center;
   align-self: center;
 }
+.detail-container span {
+  font-weight: bold;
+  font-size: 1.1em;
+}
 .detail-info div{
   margin: 10px;
 }
@@ -567,6 +570,7 @@ select {
 .detail-description {
   grid-column: 1 / 3;
   grid-row: 4 / 5;
+  padding: 20px;
 }
 
 
