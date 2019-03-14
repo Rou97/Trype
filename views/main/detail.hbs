@@ -1,0 +1,36 @@
+{{!-- <h1>{{tortilla.name}}</h1>
+<p>Special ingredient (if any): {{tortilla.special}}</p>
+<p>Size: {{tortilla.size}}</p>
+<p>Created by: {{tortilla.creator.username}}</p>
+
+<p class="coordinates">{{tortilla.location.coordinates}}</p>
+
+{{#if isCreator}}
+<a href="/tortillas/{{tortilla._id}}/edit">Editar Tortilla</a>
+<form action="/tortillas/{{tortilla._id}}/delete" method="POST">
+  <button type="submit">Borrar tortilla</button>
+</form>
+{{/if }}
+
+<img src="{{tortilla.imageUrl}}" alt=""> --}}
+
+<div class="detail-container">
+  <h1>{{book.title}}</h1>
+  <img src="{{book.image}}" alt="Book image">
+  <h5>{{book.ISBN}}</h5>
+  {{#each book.author}}
+    <h5>{{this.1}}</h5>
+  {{/each}}
+{{!-- <p>Special ingredient (if any): {{tortilla.special}}</p>
+<p>Size: {{tortilla.size}}</p>
+<p>Created by: {{tortilla.creator.username}}</p>
+
+<p class="coordinates">{{tortilla.location.coordinates}}</p>
+
+{{#if isCreator}}
+<a href="/tortillas/{{tortilla._id}}/edit">Editar Tortilla</a>
+<form action="/tortillas/{{tortilla._id}}/delete" method="POST">
+  <button type="submit">Borrar tortilla</button>
+</form>
+{{/if }} --}}
+</div>
