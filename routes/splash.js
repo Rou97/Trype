@@ -85,12 +85,15 @@ router.post('/books/add-book-got/search', requireUser, (req, res, next) => {
 });
 
 router.post('/books/add-book-got/new', requireUser, async (req, res, next) => {
-  const { title, authors, ISBN, image } = req.body;
+  const { title, authors, ISBN, image, subtitle, description, language } = req.body;
   const newBook = {
     ISBN,
     title,
+    subtitle,
     authors,
-    image
+    image,
+    description,
+    language
   };
   try {
     let book = await Book.findOne({ ISBN });
@@ -117,12 +120,15 @@ router.post('/books/add-book-got/new', requireUser, async (req, res, next) => {
 });
 
 router.post('/books/add-book-wants/new', requireUser, async (req, res, next) => {
-  const { title, authors, ISBN, image } = req.body;
+  const { title, authors, ISBN, image, subtitle, description, language } = req.body;
   const newBook = {
     ISBN,
     title,
+    subtitle,
     authors,
-    image
+    image,
+    description,
+    language
   };
   try {
     let book = await Book.findOne({ ISBN });
@@ -142,7 +148,6 @@ router.post('/books/add-book-wants/new', requireUser, async (req, res, next) => 
       req.session.currentUser = updatedUser;
     }
 
-    // match
     const user = req.session.currentUser;
     const test = await User.find();
 
@@ -195,21 +200,15 @@ router.get('/matches', requireUser, async (req, res, next) => {
     });
   }
 
-  // console.log(userMatch);
-  // console.log(bookMatch);
-  // console.log(bookId);
   console.log(testArray);
 
   res.render('main/matches', { user, testArray });
 });
 
-// -------------------------------Route to view a details book ------------------------------//
 router.get('/books/:id', requireUser, async (req, res, next) => {
   const { id } = req.params;
-  // const { _id } = req.session.currentUser;
   try {
     const book = await Book.findById(id);
-    // console.log(book.author[0]);
     res.render('main/detail', { book });
   } catch (error) {
     next(error);
