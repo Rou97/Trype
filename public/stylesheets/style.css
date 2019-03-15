@@ -854,7 +854,7 @@ select {
   box-shadow: 1px 1px 15px rgba(0, 0, 0, 0.1);
   background-color: #fff;
   border-radius: 10px;
-  width: 95%;
+  width: 100%;
   display: grid;
   margin-bottom: 2vh;
   min-height: 330px;
@@ -877,13 +877,19 @@ select {
 }
 
 
-.wrap-image > h2 {
+.wrap-image > h4 {
+    width: 170px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding-right:20px;
+  }
   /* width: 180px; */
-   height: 7vh; 
+   /* height: 7vh;  */
   /* white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis; */
-}
+
 
 
 .wrap-image > img {
