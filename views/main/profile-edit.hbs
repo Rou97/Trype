@@ -1,23 +1,20 @@
-<div class="profile-container">
-
-    <section class="profile-image">
+<div class="profile-edit-container">
+    <section class="profile-edit-image">
         <img src="/images/default-profile.png" alt="Imagen Usuario">
     </section>
-
     <form method="POST" action="/splash/profile-edit-action">
-
-        <section class="profile-info">
-            <div class="profile-username">
-                <p class="profile-field">Username</p>
-                <input type="text" name="username" value="{{user.username}}" class="profile-field-data"/>
+        <section class="profile-edit-info">
+            <div class="profile-edit-username">
+                <p class="profile-edit-field">Username</p>
+                <input type="text" name="username" value="{{user.username}}" class="profile-edit-field-data"/>
             </div>
-            <div class="profile-email">
-                <p class="profile-field">E-Mail</p>
-                <input type="email" name="email" value="{{user.email}}" class="profile-field-data"/>
+            <div class="profile-edit-email">
+                <p class="profile-edit-field">E-Mail</p>
+                <input type="email" name="email" value="{{user.email}}" class="profile-edit-field-data"/>
             </div>
-            <div class="profile-location">
-                <p class="profile-field">Location</p>
-                <select name="location" class="profile-field-data">
+            <div class="profile-edit-location">
+                <p class="profile-edit-field">Location</p>
+                <select name="location" class="profile-edit-field-data">
                     <option value="Barcelona">Barcelona</option> 
                     <option value="Madrid">Madrid</option>
                     <option value="Paris" selected>Paris</option>
@@ -25,11 +22,9 @@
                 {{!-- <input type="text" name="location" value="{{user.location}}" class="profile-field-data"/> --}}
             </div>
         </section>
-
-        <section class="profile-edit">
-             <button type="submit" class="profile-edit-button">Save</button>
+        <section class="profile-edit-save">
+             <button type="submit" class="profile-edit-save-button">Save</button>
         </section>
-
     </form>
 </div>
 
