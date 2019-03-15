@@ -435,6 +435,69 @@ select {
   height: 80px;
   width: 80px;
 }
+/*-----------------------Profile Edit-------------------------*/
+
+.profile-edit-container {
+  padding-top: 7vh;
+  background-color: #f7f7f7; 
+  width: 100%;
+  height: 100vh;
+  color: #fff;
+  display: grid;
+  grid-template-rows: 40% 30% 30%;
+  align-items: center;
+  /* justify-items: center; */
+}
+.profile-edit-image {
+  margin-top: 40px;
+  height: 200px;
+  width: 200px;
+  text-align: center;
+  justify-self: center;
+}
+.profile-edit-image img {
+  height: 200px;
+  width: 200px;
+  border: 2px solid black;
+  border-radius: 50%;
+}
+
+.profile-edit-info {
+  width: 100%;
+  margin-top: 20vh;
+  display: grid;
+  grid-template-rows: 33% 33% 33%;
+  font-size: 1.2em;
+}
+.profile-edit-username {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 5px;
+  border-bottom: 2px solid grey;
+}
+.profile-edit-email {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 5px;
+  border-bottom: 2px solid grey;
+}
+.profile-edit-location {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 5px;
+  border-bottom: 2px solid grey;
+}
+.profile-edit-field {
+  color: grey;
+  font-weight: bold;
+  margin-top: 5px;
+}
+.profile-edit-field-data {
+  color: #30515E;
+  font-weight: bold;
+  font-size: 1.1em;
+  border: 2px solid #657FAC;
+}
 
 /*-----------------------Books----------------------*/
 .books-container {
@@ -495,8 +558,6 @@ select {
   padding: 20px;
 }
 
-
-
 .shareWants{
   display:block;
   width:60px;
@@ -531,8 +592,6 @@ select {
   display: grid;
   grid-template-columns: 50% 50%;
   grid-template-rows: 10% 40% 10% 40%;
-
-  
 }
 .detail-container h1 {
   grid-column: 1 / 3;
@@ -566,10 +625,9 @@ select {
   grid-column: 1 / 2;
   grid-row: 2 / 3;
   width: 170px;
-  height: 230px;
+  height: 200px;
   justify-self:center;
 }
-
 
 .detail-delete-book {
   grid-column: 1 / 3;
@@ -590,24 +648,24 @@ select {
   font-size: 1.5em;
   color: #fff;
   box-shadow: 1px 5px 25px rgba(0, 0, 0, 0.1);
-  
 }
-  .detail-description {
-    grid-column: 1 / 3;
-    grid-row: 4 / 5;
-    padding: 5px;
-  }
-  .detail-description h5{
-    padding: 5px;
-    text-align: center;
-    font-size: 1.2em;
-    font-weight: 500;
-  }
-  .detail-description p{
-    padding: 10px;
-    font-size: 1em;
-    font-weight: 300;
-  }
+
+.detail-description {
+  grid-column: 1 / 3;
+  grid-row: 4 / 5;
+  padding: 5px;
+}
+.detail-description h5{
+  padding: 5px;
+  text-align: center;
+  font-size: 1.2em;
+  font-weight: 500;
+}
+.detail-description p{
+  padding: 10px;
+  font-size: 1em;
+  font-weight: 300;
+}
 
 
 /*-------------------------------Wants----------------------------*/
