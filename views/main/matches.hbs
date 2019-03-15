@@ -1,29 +1,39 @@
-<div class="matches-container"></div>
-    <h1>Matches</h1> 
+<div class="matches-container">
+    <div class="matches-title">
+        <h1>Matches</h1> 
+    </div>
 
+    <div class="results-matches">
     {{#each testArray}}
-        <section class="wrap-match">
 
-            <article class="wrap-image">
-                <p>{{this.bookMatch.title}}</p>
-                <img src="{{this.bookMatch.image}}" alt="Book image">
+        <div class="container-match">
+    
+            <section class="wrap-match">
+
+                <article class="wrap-image">
+                    <h2>{{this.bookMatch.title}}</h2>
+                    <img src="{{this.bookMatch.image}}" alt="Book image">
+                </article>
+
+                <article class="wrap-image">  
+                    <h2>{{this.bookId.title}}</h2>
+                    <img src="{{this.bookId.image}}" alt="Book image">
+                </article>
+
+            </section>
+
+            <article class="wrap-user"> 
+                <p>Match with: {{this.userMatch.username}}</p>
+                <p>Email: 
+                    <a href="mailto:{{this.userMatch.email}}?Subject=Trype%20swap%20books" target="_top">{{this.userMatch.email}}</a>
+                </p>
+                
             </article>
 
-            <article class="wrap-image">  
-                <p>{{this.bookId.title}}</p>
-                <img src="{{this.bookId.image}}" alt="Book image">
-            </article>
-
-        </section>
-
-        <article class="wrap-user"> 
-            <p>Username: {{this.userMatch.username}}</p>
-            <a href="mailto:{{this.userMatch.email}}?Subject=Trype%20swap%20books" target="_top">
-                <p>Email: {{this.userMatch.email}}</p>
-            </a>
-        </article>
+        </div>
 
     {{/each}}
+    </div>
 
 </div>
 
