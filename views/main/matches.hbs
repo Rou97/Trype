@@ -2,15 +2,28 @@
     <h1>Matches</h1> 
 
     {{#each testArray}}
+        <section class="wrap-match">
 
-        <p>{{this.bookMatch.title}}</p>
-        <img src="{{this.bookMatch.image}}" alt="Book image">
-        <p>{{this.bookId.title}}</p>
-        <img src="{{this.bookId.image}}" alt="Book image">
-        <p>{{this.userMatch.username}}</p>
-        <p>{{this.userMatch.email}}</p>
+            <article class="wrap-image">
+                <p>{{this.bookMatch.title}}</p>
+                <img src="{{this.bookMatch.image}}" alt="Book image">
+            </article>
+
+            <article class="wrap-image">  
+                <p>{{this.bookId.title}}</p>
+                <img src="{{this.bookId.image}}" alt="Book image">
+            </article>
+
+        </section>
+
+        <article class="wrap-user"> 
+            <p>Username: {{this.userMatch.username}}</p>
+            <a href="mailto:{{this.userMatch.email}}?Subject=Trype%20swap%20books" target="_top">
+                <p>Email: {{this.userMatch.email}}</p>
+            </a>
+        </article>
 
     {{/each}}
-    
+
 </div>
 
