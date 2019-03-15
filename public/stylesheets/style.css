@@ -732,3 +732,42 @@ select {
   margin-left: 100px;
   font-size: 3em;
 }
+
+/*----------------------------------Match view---------------------*/
+.wrap-match {
+  display: flex;
+  background-color: blue;
+  padding-top: 4vh;
+}
+
+
+.wrap-image {
+  display: flex;
+  background-color: green;
+  display: inline-block;
+  width: 50%;
+}
+
+
+.wrap-image > p {
+  background-color: yellow;
+  height: 7vh;
+  padding-left: 10vw;
+}
+
+
+.wrap-image > img {
+  padding-left: 10vw;
+}
+
+
+.wrap-user {
+  display: flex;
+  background-color: orange;
+}
+
+
+.wrap-user > p {
+  display: inline-block;
+  background-color: red;
+}
