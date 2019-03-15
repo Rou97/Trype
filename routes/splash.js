@@ -50,7 +50,8 @@ router.post('/books/:id/delete', requireUser, async (req, res, next) => {
   try {
     const updatedUser = await User.findByIdAndUpdate(_id, { $pull: { books: { item: id } } }, { new: true });
     req.session.currentUser = updatedUser;
-    // const deleteMatch = await User.findByIdAndUpdate(_id, { $pull: { match: { otherUserId: id } } }, { new: true });
+    const deleteMatch = await User.findByIdAndUpdate(_id, { $pull: { match: { bookId: id } } }, { new: true });
+    req.session.currentUser = deleteMatch;
     res.redirect('/splash/books');
   } catch (error) {
     next(error);
