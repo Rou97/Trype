@@ -475,25 +475,25 @@ select {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 20px 1px;
+  padding: 10px 1px;
   border-bottom: 2px solid grey;
 }
 .profile-edit-email {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 20px 1px;
+  padding: 10px 1px;
   border-bottom: 2px solid grey;
 }
 .profile-edit-location {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 20px 1px;
+  padding: 10px 1px;
   border-bottom: 2px solid grey;
 }
 .profile-edit-field {
-  color: grey;
+  color: #657FAC;
   font-weight: bold;
   margin-top: 5px;
 }
@@ -501,13 +501,34 @@ select {
   color: #30515E;
   font-weight: bold;
   font-size: 1.1em;
+  font-weight: 400;
   background-color: #fff;
- border: 0;
+  border: 0;
   
 }
 .profile-edit-location select {
   text-align: left;
   text-align-last: left;
+}
+.profile-edit-save {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 2vh;
+}
+.profile-edit-save-button {
+  border: 1px solid #657FAC;
+  border-radius: 10vh;
+  background-color: #657FAC;
+  color: #fff;
+  text-align: center;
+  /* align-self: start; */
+  margin-bottom: 20px;
+  width: 45vh;
+  height: 7vh;
+  font-size: 1.5em;
+  box-shadow: 1px 5px 25px rgba(0, 0, 0, 0.1);
+  /* margin-top: 10px; */
 }
 
 /*-----------------------Books----------------------*/
