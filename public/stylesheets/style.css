@@ -815,7 +815,6 @@ select {
   display: grid;
   grid-template-rows: 60%;
   justify-content: center;
-
   justify-items: center;
 }
 
@@ -826,6 +825,7 @@ select {
   width: 95%;
   display: grid;
   margin-bottom: 2vh;
+  min-height: 330px;
   /* grid-template-rows: 95%; */
 }
 
@@ -846,9 +846,11 @@ select {
 
 
 .wrap-image > h2 {
-  height: 7vh;
+  /* width: 180px; */
+   height: 7vh; 
+  /* white-space: nowrap;
   overflow: hidden;
-  text-overflow: ellipsis;
+  text-overflow: ellipsis; */
 }
 
 

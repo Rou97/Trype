@@ -27,12 +27,10 @@ router.get('/profile-edit-view', requireUser, (req, res, next) => {
 });
 
 router.post('/profile-edit-action', requireUser, async (req, res, next) => {
-  console.log('entra');
   const { _id } = req.session.currentUser;
   const { username, email, location } = req.body;
   const updatedUser = await User.findByIdAndUpdate(_id, { username: username, email: email, location: location }, { new: true });
   req.session.currentUser = updatedUser;
-  console.log(updatedUser);
   res.redirect('/splash/profile');
 });
 
@@ -67,7 +65,6 @@ router.post('/books/add-book-wants/search', requireUser, (req, res, next) => {
   const { title } = req.body;
   api.search(title, function (error, results) {
     if (!error) {
-      console.log(results);
       res.render('main/add-book-wants', { results });
     } else {
     }
@@ -204,7 +201,6 @@ router.get('/matches', requireUser, async (req, res, next) => {
   const updatedUser = await User.findByIdAndUpdate(user._id, { username: user.username }, { new: true });
   req.session.currentUser = updatedUser;
 
-  console.log(testArray);
   res.render('main/matches', { user, testArray });
 });
 
